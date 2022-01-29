@@ -1,0 +1,110 @@
+﻿
+<div class="modal fade" id="mdlNguoiDung_AddEdit" aria-labelledby="exampleModalLongTitle">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:700px; padding:20px">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thông tin hồ sơ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="txtMaHoSo">Mã hồ sơ</label>
+                            <input type="text" class="form-control" id="txtMaHoSo">
+                            <input type="hidden" class="form-control" id="txtID">
+                        </div>
+                        <div class="form-group col-md-9">
+                            <label for="txtTieuDe">Tiêu đề</label>
+                            <input type="text" class="form-control" id="txtTieuDe">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="txtThoiHanBaoQuan">Thời hạn bảo quản</label>
+                            <input type="text" class="form-control" id="txtThoiHanBaoQuan">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="cbCheDo">Chế độ sử dụng</label>
+                            <select id="cbCheDo" class="form-control">
+                                <option value="0" selected="">Chọn chế độ</option>
+                                <option value="Công khai">Công khai</option>
+                                <option value="Hạn chế">Hạn chế</option>
+                                <option value="Bảo mật">Bảo mật</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="txtNgonNgu">Ngôn ngữ</label>
+                            <input type="text" class="form-control" id="txtNgonNgu">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="dteThoiGianBatDau">Thời gian bắt đầu</label>
+                            <input type="date" class="form-control" id="dteThoiGianBatDau">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="dteThoiGianKetThuc">Thời gian kết thúc</label>
+                            <input type="date" class="form-control" id="dteThoiGianKetThuc">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="nbTongSoVanBan">Tổng số văn bản trong hồ sơ</label>
+                            <input type="number" class="form-control" id="nbTongSoVanBan">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="nbSoLuongTo">Số lượng tờ</label>
+                            <input type="number" class="form-control" id="nbSoLuongTo">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="nbSoLuongTrang">Số lượng trang</label>
+                            <input type="number" class="form-control" id="nbSoLuongTrang">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="txtKyHieuThongTin">Ký hiệu thông tin</label>
+                            <input type="text" class="form-control" id="txtKyHieuThongTin">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="txtTuKhoa">Từ khóa</label>
+                            <input type="text" class="form-control" id="txtTuKhoa">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="txtTinhTrangVatLy">Tình trạng vật lý</label>
+                            <input type="text" class="form-control" id="txtTinhTrangVatLy">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtChuGiai">Chú giải</label>
+                        <textarea class="form-control" id="txtChuGiai" placeholder="Nhập nội dung bổ sung cho bìa hồ sơ"></textarea>
+                    </div>
+                    <h4>Danh sách file đính kèm</h4>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" multiple class="custom-file-input" id="fDinhKem">
+                                <label class="custom-file-label" for="fDinhKem">Chọn văn bản tài liệu</label>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <tbody id="lstFile">
+                            <tr>
+                                <td style="width:85%">Tên file</td>
+                                <td class="text-center">Tác vụ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="ti-close"></i> Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="SaveDoc()"><i class="ti-save"></i> Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>

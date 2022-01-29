@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SearchDB" Class="SearchDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=SearchDB;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SearchDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tb_NgonNgu" Member="tb_NgonNgus">
+    <Type Name="tb_NgonNgu">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenNgonNgu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NguoiTao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgaySua" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NguoiSua" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tb_TuNgu" Member="tb_TuNgus">
+    <Type Name="tb_TuNgu">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDTuDien" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoiDungTu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NghiaCuaTu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TuDongNghia" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TuTraiNghia" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IDNgonNgu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThanhNgu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ViDu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CumDongTu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TuLienQuan" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NguoiTao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgaySua" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NguoiSua" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TuDichNghia" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tb_NguoiDung" Member="tb_NguoiDungs">
+    <Type Name="tb_NguoiDung">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenDangNhap" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MatKhau" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(1500)" CanBeNull="true" />
+      <Column Name="SoDienThoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NguoiTao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgaySua" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NguoiSua" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DoPhucTap" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tb_TuDien" Member="tb_TuDiens">
+    <Type Name="tb_TuDien">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenTuDien" Type="System.String" DbType="NVarChar(2500)" CanBeNull="true" />
+      <Column Name="MaTuDien" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TacGia" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="IDNgonNguNguon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDNgonNguDich" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NguoiTao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgaySua" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NguoiSua" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

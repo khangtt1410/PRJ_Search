@@ -1,0 +1,64 @@
+﻿@using CLSHelper.HtmlHelpers
+@model NguoiDungEntities.lstData
+<!-- table-responsive -->
+<!--Chỉnh sửa CSS phân trang-->
+<style>
+    #DataTables_Table_0_paginate ul li {
+        float: left;
+        margin: 0 5px;
+        background-color: #884FFB;
+        border-radius: 3px;
+        text-align: center;
+        width: 34px;
+        height: 37px;
+        padding-top: 7px;
+    }
+
+        #DataTables_Table_0_paginate ul li a {
+            color: #fff;
+            background-color: #884ffb00 !important;
+        }
+
+    .currentpage {
+        background-color: #f87171 !important
+    }
+
+    .no-padding {
+        padding: 0
+    }
+</style>
+<div class="table-responsive">
+    <table class="table add_to_cart">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên đăng nhập</th>
+                <th scope="col">Họ tên</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col">Tác vụ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int i = 0; }
+            @foreach (var item in Model.lstDoc)
+            {
+                i++;
+<tr>
+    <td>@i</td>
+    <th>@item.TenDangNhap<span class="tb_date">@item.Email</span></th>
+    <td>@item.HoTen</td>
+    <td>@item.SoDienThoai</td>
+    <td>@item.DiaChi</td>
+    <td><i class="fa fa-trash" style="margin-right:5px"></i><i class="fa fa-edit"></i></td>
+</tr>
+}
+        </tbody>
+    </table>
+</div>
+
+@if (Model.PagingInfo.ItemsPerPage < Model.PagingInfo.TotalItems)
+{
+<div class="dataTables_paginate paging_simple_numbers" style="margin-bottom:20px; float:right; padding-right:20px" id="DataTables_Table_0_paginate">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("GetListData", "NguoiDung", new { page = x }))
+</div>}
