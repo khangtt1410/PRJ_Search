@@ -9,6 +9,9 @@ namespace PRJ_SEARCH
     {
         public class lstData
         {
+            /// <summary>
+            /// abc
+            /// </summary>
             public List<TuNguView> lstDoc { get; set; }
             public CLSHelper.Models.PagingInfo PagingInfo { get; set; }
         }
