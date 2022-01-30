@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CLSHelper;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -63,7 +64,10 @@ namespace PRJ_SEARCH
         [ValidateInput(false)]
         public JsonResult Save(FormCollection c)
         {
+            int userId = 1;
             int ID = int.Parse(c["ID"].ToString());
+            var salt = LMSUtilities.GetRandomLetters(5);
+            var passwordEncrypted = LMSUtilities.GetMD5(string.Concat(salt, c["MatKhau"].Trim()));
             //int userId = int.Parse(Session["MaNguoiDung"].ToString());
             if (ID == 0)
             {
@@ -71,14 +75,13 @@ namespace PRJ_SEARCH
                 tb_NguoiDung item = new tb_NguoiDung();
                 item.HoTen = c["HoTen"] != null ? c["HoTen"].Trim() : "";
                 item.TenDangNhap = c["TenDangNhap"] != null ? c["TenDangNhap"].Trim() : "";
-                item.MatKhau = c["MatKhau"];
+                item.MatKhau = passwordEncrypted;
                 item.SoDienThoai = c["Phone"] != null ? c["Phone"].Trim() : "";
                 item.DiaChi = c["DiaChi"] != null ? c["DiaChi"].Trim() : "";
                 item.Email = c["Email"] != null ? c["Email"].Trim() : "";
-                item.DoPhucTap = c["DoPhucTap"] != null ? c["DoPhucTap"].Trim() : "";
+                item.DoPhucTap = salt;
                 item.NgayTao = DateTime.Now;
-                //tam thoi chua lam nut dang nhap nguoi dung nen de tam nguoi tao la 1
-                item.NguoiTao = 1;
+                item.NguoiTao = userId;
                 item.TrangThai = true;
                 db.tb_NguoiDungs.InsertOnSubmit(item);
                 db.SubmitChanges();
@@ -89,13 +92,13 @@ namespace PRJ_SEARCH
                 tb_NguoiDung data = db.tb_NguoiDungs.FirstOrDefault(x => x.ID == ID);
                 data.HoTen = c["HoTen"] != null ? c["HoTen"].Trim() : "";
                 data.TenDangNhap = c["TenDangNhap"] != null ? c["TenDangNhap"].Trim() : "";
-                data.MatKhau = c["MatKhau"];
+                data.MatKhau = passwordEncrypted;
                 data.SoDienThoai = c["Phone"] != null ? c["Phone"].Trim() : "";
                 data.DiaChi = c["DiaChi"] != null ? c["DiaChi"].Trim() : "";
                 data.Email = c["Email"] != null ? c["Email"].Trim() : "";
-                data.DoPhucTap = c["DoPhucTap"] != null ? c["DoPhucTap"].Trim() : "";
+                data.DoPhucTap = salt;
                 data.NgaySua = DateTime.Now;
-                data.NguoiSua = 1;
+                data.NguoiSua = userId;
                 db.SubmitChanges();
             }
             return Json(new
@@ -106,7 +109,7 @@ namespace PRJ_SEARCH
 
         public int Delete(string ListID)
         {
-            //int userId = int.Parse(Session["MaNguoiDung"].ToString());
+           
             var convertArray = ListID.Replace("[", "").Replace("]", "");
             var lstLoai = convertArray.Split(',').ToList();
             foreach (var item in lstLoai)

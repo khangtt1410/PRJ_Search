@@ -3,6 +3,13 @@
 <!-- table-responsive -->
 <!--Chỉnh sửa CSS phân trang-->
 <style>
+    ul.paginationNavigator li.active, ul.paginationNavigator li.active:hover {
+        background: #a8ce54 !important;
+        border: none;
+        line-height: 30px;
+        color: #fff;
+    }
+
     #DataTables_Table_0_paginate ul li {
         float: left;
         margin: 0 5px;
@@ -16,14 +23,16 @@
 
         #DataTables_Table_0_paginate ul li a {
             color: #fff;
-            background-color: #884ffb00 !important;
+            background-color: #884ffb00;
         }
 
         #DataTables_Table_0_paginate ul :hover {
             color: #fff;
-            background-color: #808080 !important;
+            background-color: #808080;
         }
-
+    .currentpage {
+        background-color: #f87171 !important
+    }
     .no-padding {
         padding: 0
     }
@@ -60,7 +69,7 @@
                     <a class="btn btn-action" style="padding:6px 6px" title="Sửa" onclick="ShowModalAddEdit(@item.ID)">
                         <span class="fa fa-edit"></span>
                     </a>
-                    <a class="btn btn-action" style="padding:4px 4px" title="Xóa" onclick="confirmDialog('Bạn có chắc chắn muốn xóa bản ghi này?', 'deleteOne(@item.ID)')">
+                    <a class="btn btn-action" style="padding:4px 4px" title="Xóa" onclick="Link_DeleteTT_onclick(@item.ID)">
                         <span class="fa fa-trash"></span>
                     </a>
                     
