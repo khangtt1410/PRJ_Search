@@ -1,49 +1,78 @@
-﻿
+﻿<style>
+    .error{
+        color:red;
+    }
+</style>
 <div class="modal fade" id="mdlNguoiDung_AddEdit" aria-labelledby="exampleModalLongTitle">
     <div class="modal-dialog">
-        <div class="modal-content" style="width:700px; padding:20px">
+        <div class="modal-content" style="width:700px;">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Thông tin người dùng</h5>
+                <h5 class="modal-title" id="TieuDe"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="txtMaHoSo">Tên đăng nhập</label>
-                            <input type="text" class="form-control" id="txtTenDangNhap">
-                            <input type="hidden" class="form-control" id="txtID">
+                <input id="id" name="id" style="display:none" value="0" />
+                <form role="form" id="frmSaveData">
+                    <div class="col-lg-12">
+                        <div style="float:left;width:48%;">
+                            <h4 class="head-title" style="color: #007cff;">Thông tin tài khoản</h4>
+
+                            <div class="form-group">
+                                <label for="txtTaiKhoan">Tên đăng nhập (*):</label>
+                                <input type="text" id="varTaiKhoan" style="color:#444" name="varTaiKhoan" class="form-control" />
+
+                                <label for="txtTaiKhoant" id="TaiKhoan" style="display:block;color:#a94442"></label>
+                                <label for="varTaiKhoan" id="errtaikhoan" class="error" style="display:block"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtMatKhau">Mật khẩu:</label>
+                                <input type="password" id="varMatKhau" placeholder="******" style="color:#444" name="varMatKhau" maxlength="8" class="form-control" />
+                                <p class="text-muted">Mậu khẩu không chứa khoảng trắng đầu và cuối.</p>
+                                <label for="txtMatKhau" id="Label1" style="display:block;color:#a94442"></label>
+                                <label for="varMatKhau" id="errmatkhau" class="error" style="display:block"></label>
+                            </div>
+
                         </div>
-                        <div class="form-group col-md-9">
-                            <label for="txtTieuDe">Mật khẩu</label>
-                            <input type="text" class="form-control" id="txtMatKhau">
+
+                        <div style="float:right;width:48%;">
+                            <h4 class="head-title" style="color: #007cff;">Thông tin cá nhân</h4>
+
+                            <div class="form-group">
+                                <label for="txtHoTen">Họ tên (*):</label>
+                                <input type="text" class="form-control" style="color:#444" id="varHoTen" name="varHoTen">
+                                <label for="txtHoTen" id="Label1" style="display:block;color:#a94442"></label>
+                                <label for="varHoTen" id="errten" class="error" style="display:block"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtEmail">Email:</label>
+                                <input type="email" id="varEmail" style="color:#444" name="varEmail" class="form-control" />
+                                <label for="txtEmail" id="Label1" style="display:block;color:#a94442"></label>
+                                <label for="varEmail" id="erremail" class="error" style="display:block"></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtPhone">Điện thoại:</label>
+                                <input type="tel" class="form-control" style="color:#444" id="varPhone" name="varPhone">
+                                <label for="txtPhone" id="Label1" style="display:block;color:#a94442"></label>
+                                <label for="varPhone" id="errphone" class="error" style="display:block"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtDiaChi">Địa chỉ:</label>
+                                <input type="text" class="form-control" id="varDiaChi" name="varDiaChi">
+                                <label for="txtDiaChi" id="Label1" style="display:block;color:#a94442"></label>
+                            </div>
                         </div>
+
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="txtThoiHanBaoQuan">Họ tên</label>
-                            <input type="text" class="form-control" id="txtHoTen">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="txtThoiHanBaoQuan">Email</label>
-                            <input type="text" class="form-control" id="txtEmail">
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="txtNgonNgu">Số điện thoại</label>
-                            <input type="text" class="form-control" id="txtSoDienThoai">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtChuGiai">Địa chỉ</label>
-                        <input type="text" class="form-control" id="txtDiaChi">
-                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="ti-close"></i> Đóng</button>
-                <button type="button" class="btn btn-primary" onclick="SaveDoc()"><i class="ti-save"></i> Lưu thay đổi</button>
+                <button type="button" class="btn btn-primary" id="btnSave" onclick="Save()"><i class="ti-save"></i> Lưu </button>
             </div>
         </div>
     </div>
