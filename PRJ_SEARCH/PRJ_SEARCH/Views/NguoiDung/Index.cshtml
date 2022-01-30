@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_LayoutPageDetail.cshtml";
 }
 
-
 <!-- ============================ Page Title Start================================== -->
 <section class="page-title">
     <div class="container">
@@ -36,15 +35,15 @@
                 <div class="checkout_coupon checkout">
                     <div class="ckt_last">
                         <form class="form-inline">
-                            <button type="button" class="btn btn-secondary" style="margin-right:10px" onclick="ShowModalAddEdit()">Thêm mới</button>
-                            <button type="button" class="btn btn-primary">Xóa bỏ</button>
+                            <button type="button" class="btn btn-secondary" style="margin-right:10px" id="btnAddNew" onclick="ShowModalAddEdit()"><i class="fa fa-plus" aria-hidden="true"></i> Thêm mới</button>
+                            @*<button type="button" class="btn btn-primary"><i class="fa fa-trash" aria-hidden="true"></i> Xóa bỏ</button>*@
                         </form>
                     </div>
                     <div class="checkout_coupon_flex">
                         <div class="input-group" style="width:60%; float:right">
-                            <input type="text" class="form-control" placeholder="Từ khóa tìm kiếm">
+                            <input type="text" id="txtSearch" class="form-control" placeholder="Từ khóa tìm kiếm">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"><img src="~/Content/img/search.svg" class="search-icon" alt=""></button>
+                                <button class="btn btn-outline-secondary" type="button" onclick="Search()"><img src="~/Content/img/search.svg" class="search-icon" alt=""></button>
                             </div>
                         </div>
                     </div>
@@ -61,6 +60,27 @@
 <!-- ============================ Add To cart End ================================== -->
 <!-- Modal cập nhật người dùng -->
 @Html.Partial("~/Views/NguoiDung/Modal_AddEdit.cshtml")
+
+<!-- Modal xóa -->
+<div class="modal fade" id="DeleteND" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thông báo</h4>
+            </div>
+            <div class="modal-body">
+                <p type="hidden" style="display:none" id="NDID_Popup"></p>
+                <p>Nhấn đồng ý để xác nhận xóa!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="deleteOne();" id="btnDelete" data-dismiss="modal">Đồng ý</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section scripts
     {
     <script src="~/Content/JsCustom/NguoiDung.js"></script>
