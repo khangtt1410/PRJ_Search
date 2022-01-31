@@ -3,10 +3,17 @@
 <!-- table-responsive -->
 <!--Chỉnh sửa CSS phân trang-->
 <style>
+    ul.paginationNavigator li.active, ul.paginationNavigator li.active:hover {
+        background: #a8ce54 !important;
+        border: none;
+        line-height: 30px;
+        color: #fff;
+    }
+
     #DataTables_Table_0_paginate ul li {
         float: left;
         margin: 0 5px;
-        background-color: #884FFB;
+        background-color: #2983f5;
         border-radius: 3px;
         text-align: center;
         width: 34px;
@@ -16,27 +23,35 @@
 
         #DataTables_Table_0_paginate ul li a {
             color: #fff;
-            background-color: #884ffb00 !important;
+            background-color: #884ffb00;
         }
 
+        #DataTables_Table_0_paginate ul :hover {
+            color: #fff;
+            background-color: #808080;
+        }
     .currentpage {
         background-color: #f87171 !important
     }
-
     .no-padding {
         padding: 0
     }
+
+    .table > thead > tr > th {
+        background: #2983f5;
+        color: #fff;
+    }
 </style>
 <div class="table-responsive">
-    <table class="table add_to_cart">
+    <table class="table table-hover table-bordered" id="tblNguoiDung">
         <thead>
             <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Tên đăng nhập</th>
+                <th scope="col" style="text-align:center">STT</th>
+                <th scope="col" >Tên đăng nhập</th>
                 <th scope="col">Họ tên</th>
-                <th scope="col">Số điện thoại</th>
+                <th scope="col" style="text-align:center">Số điện thoại</th>
                 <th scope="col">Địa chỉ</th>
-                <th scope="col">Tác vụ</th>
+                <th scope="col" style="text-align:center">Chức năng</th>
             </tr>
         </thead>
         <tbody>
@@ -44,21 +59,29 @@
             @foreach (var item in Model.lstDoc)
             {
                 i++;
-<tr>
-    <td>@i</td>
-    <th>@item.TenDangNhap<span class="tb_date">@item.Email</span></th>
-    <td>@item.HoTen</td>
-    <td>@item.SoDienThoai</td>
-    <td>@item.DiaChi</td>
-    <td><i class="fa fa-trash" style="margin-right:5px"></i><i class="fa fa-edit"></i></td>
-</tr>
-}
+            <tr>
+                <td style="text-align:center">@i</td>
+                <th>@item.TenDangNhap<span class="tb_date">@item.Email</span></th>
+                <td>@item.HoTen</td>
+                <td style="text-align:center">@item.SoDienThoai</td>
+                <td>@item.DiaChi</td>
+                <td style="text-align:center">
+                    <a class="btn btn-action" style="padding:6px 6px" title="Sửa" onclick="ShowModalAddEdit(@item.ID)">
+                        <span class="fa fa-edit"></span>
+                    </a>
+                    <a class="btn btn-action" style="padding:4px 4px" title="Xóa" onclick="Link_DeleteTT_onclick(@item.ID)">
+                        <span class="fa fa-trash"></span>
+                    </a>
+                    
+                </td>
+            </tr>
+            }
         </tbody>
     </table>
 </div>
 
 @if (Model.PagingInfo.ItemsPerPage < Model.PagingInfo.TotalItems)
 {
-<div class="dataTables_paginate paging_simple_numbers" style="margin-bottom:20px; float:right; padding-right:20px" id="DataTables_Table_0_paginate">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("GetListData", "NguoiDung", new { page = x }))
-</div>}
+    <div class="box-footer clearfix text-right" style="margin-bottom:20px; float:right; padding-right:20px" id="DataTables_Table_0_paginate">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("GetListData", "NguoiDung", new { page = x }))
+    </div>}
