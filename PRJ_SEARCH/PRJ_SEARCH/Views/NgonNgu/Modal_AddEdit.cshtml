@@ -1,0 +1,33 @@
+﻿<style>
+    .error {
+        color: red;
+        float:right;
+    }
+</style>
+<div class="modal fade" id="mdlNgonNgu_AddEdit" aria-labelledby="exampleModalLongTitle">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:700px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TieuDe"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-left: auto; margin-right: auto;padding-left:15px;padding-right:15px">
+                    <input id="id" name="id" style="display:none" />
+                    <div style="display : table; width : 100%; padding-top:10px">
+                        <div style="font-weight:400; float : left; width : 150px; line-height : 34px;">Tên ngôn ngữ <span style="color:red">(*)</span></div>
+                        <div style="float : left; width : calc(100% - 150px);"><input id="txtten" class="form-control" maxlength="500" name="txtten" type="text" style="width:100%;"></div>
+                    </div>
+                    <span id="errorNameCourse" style="display:none;" class="error"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="ti-close"></i> Đóng</button>
+                <button type="button" class="btn btn-primary" id="btnSave" onclick="Save()"><i class="ti-save"></i> Lưu </button>
+            </div>
+        </div>
+    </div>
+</div>
+

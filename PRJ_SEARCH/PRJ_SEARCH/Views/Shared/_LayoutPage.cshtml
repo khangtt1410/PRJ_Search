@@ -1,10 +1,10 @@
-﻿@{ 
+﻿@{
     var idNguoiDungSession = Session["IDNguoiDung"];
     int idNguoiDung = 0;
-    if(idNguoiDungSession != null)
-            {
+    if (idNguoiDungSession != null)
+    {
         idNguoiDung = int.Parse(idNguoiDungSession.ToString());
-            }
+    }
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -51,8 +51,8 @@
                         <ul class="nav-menu">
 
                             @*<li class="active">
-                                <a href="/TrangChu/Index">Tra cứu<span class="submenu-indicator"></span></a>
-                            </li>*@
+                                    <a href="/TrangChu/Index">Tra cứu<span class="submenu-indicator"></span></a>
+                                </li>*@
                             @if (idNguoiDung != 0)
                             {
                                 <li class="active">
@@ -78,7 +78,7 @@
                                 <li class="login_click bg-red">
                                     <a href="#" data-toggle="modal" data-target="#login">Đăng nhập</a>
                                 </li>
-}
+                            }
                             else
                             {
 
@@ -86,11 +86,10 @@
                                 <li class="login_click bg-red">
                                     <a href="#" onclick="DangXuat()">Đăng xuất</a>
                                 </li>
-}
                             }
-                            <li class="login_click bg-blue">
+                            @*<li class="login_click bg-blue">
                                 <a href="#" data-toggle="modal" data-target="#signup">Đăng ký</a>
-                            </li>
+                            </li>*@
                         </ul>
                     </div>
                 </nav>
@@ -237,6 +236,6 @@
     <!-- ============================================================== -->
     <!--Các hàm JS custom từ các index trả về-->
     @RenderSection("scripts", required: false)
-   
+
 </body>
 </html>
