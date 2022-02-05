@@ -43,8 +43,8 @@
             <div class="container">
                 <nav id="navigation" class="navigation navigation-landscape">
                     <div class="nav-header">
-                        <a class="nav-brand static-logo" href="#"><img src="~/Content/img/logo-light.png" class="logo" alt="" /></a>
-                        <a class="nav-brand fixed-logo" href="#"><img src="~/Content/img/logo.png" class="logo" alt="" /></a>
+                        <a class="nav-brand static-logo" href="/TrangChu/Index"><img src="~/Content/img/logo-light.png" class="logo" alt="" /></a>
+                        <a class="nav-brand fixed-logo" href="/TrangChu/Index"><img src="~/Content/img/logo.png" class="logo" alt="" /></a>
                         <div class="nav-toggle"></div>
                     </div>
                     <div class="nav-menus-wrapper" style="transition-property: none;">
@@ -55,7 +55,7 @@
                                 </li>*@
                             @if (idNguoiDung != 0)
                             {
-                                <li class="active">
+                                <li>
                                     <a href="/NguoiDung/Index">Người dùng<span class="submenu-indicator"></span></a>
                                 </li>
 
@@ -220,6 +220,11 @@
     <!--Sign Up-->
     @Html.Partial("~/Views/Shared/SignUp_Modal.cshtml")
     <!--End Sign Up-->
+    <!--Modal hỏi xác nhận-->
+    @Html.Partial("~/Views/Shared/HoiXacNhan_Modal.cshtml")
+    <!--Modal thông báo-->
+    @Html.Partial("~/Views/Shared/ThongBao_Modal.cshtml")
+
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->

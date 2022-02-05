@@ -43,7 +43,7 @@
             <div class="container">
                 <nav id="navigation" class="navigation navigation-landscape">
                     <div class="nav-header">
-                        <a class="nav-brand" href="#">
+                        <a class="nav-brand" href="/TrangChu/Index">
                             <img src="~/Content/img/logo.png" class="logo" alt="" />
                         </a>
                         <div class="nav-toggle"></div>
@@ -52,11 +52,11 @@
                         <ul class="nav-menu">
 
                             @*<li class="active">
-                                <a href="/TrangChu/Index">Tra cứu<span class="submenu-indicator"></span></a>
-                            </li>*@
+                                    <a href="/TrangChu/Index">Tra cứu<span class="submenu-indicator"></span></a>
+                                </li>*@
                             @if (idNguoiDung != 0)
                             {
-                                <li class="active">
+                                <li>
                                     <a href="/NguoiDung/Index">Người dùng<span class="submenu-indicator"></span></a>
                                 </li>
 
@@ -87,7 +87,7 @@
                                 </li>
                             }
                             <li class="login_click theme-bg">
-                                <a href="#" data-toggle="modal" data-target="#signup">Đăng nhập</a>
+                                <a href="#" data-toggle="modal" data-target="#signup">Đăng ký</a>
                             </li>
                         </ul>
                     </div>
@@ -219,6 +219,11 @@
     <!--Sign Up-->
     @Html.Partial("~/Views/Shared/SignUp_Modal.cshtml")
     <!--End Sign Up-->
+    <!--Modal hỏi xác nhận-->
+    @Html.Partial("~/Views/Shared/HoiXacNhan_Modal.cshtml")
+    <!--Modal thông báo-->
+    @Html.Partial("~/Views/Shared/ThongBao_Modal.cshtml")
+
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->

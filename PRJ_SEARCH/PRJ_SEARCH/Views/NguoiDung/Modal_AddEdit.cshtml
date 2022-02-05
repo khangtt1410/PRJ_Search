@@ -4,8 +4,8 @@
     }
 </style>
 <div class="modal fade" id="mdlNguoiDung_AddEdit" aria-labelledby="exampleModalLongTitle">
-    <div class="modal-dialog">
-        <div class="modal-content" style="width:700px;">
+    <div class="modal-dialog" style="max-width: 700px">
+        <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="TieuDe"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -20,17 +20,17 @@
                             <h4 class="head-title" style="color: #007cff;">Thông tin tài khoản</h4>
 
                             <div class="form-group">
-                                <label for="txtTaiKhoan">Tên đăng nhập (*):</label>
-                                <input type="text" id="varTaiKhoan" style="color:#444" name="varTaiKhoan" maxlength="50" class="form-control" />
+                                <label for="txtTaiKhoan">Tên đăng nhập</label> <span class="price_ver">*</span>
+                                <input type="text" id="varTaiKhoan" style="color:#444" name="varTaiKhoan" class="form-control" />
 
                                 <label for="txtTaiKhoant" id="TaiKhoan" style="display:block;color:#a94442"></label>
                                 <label for="varTaiKhoan" id="errtaikhoan" class="error" style="display:block"></label>
                             </div>
 
                             <div class="form-group">
-                                <label for="txtMatKhau">Mật khẩu:</label>
+                                <label for="txtMatKhau">Mật khẩu</label> <span class="price_ver">*</span>
                                 <input type="password" id="varMatKhau" placeholder="******" style="color:#444" name="varMatKhau" maxlength="8" class="form-control" />
-                                <p class="text-muted">Mậu khẩu không chứa khoảng trắng đầu và cuối.</p>
+                                <p class="text-muted" hidden>Mật khẩu không chứa khoảng trắng đầu và cuối.</p>
                                 <label for="txtMatKhau" id="Label1" style="display:block;color:#a94442"></label>
                                 <label for="varMatKhau" id="errmatkhau" class="error" style="display:block"></label>
                             </div>
@@ -41,26 +41,26 @@
                             <h4 class="head-title" style="color: #007cff;">Thông tin cá nhân</h4>
 
                             <div class="form-group">
-                                <label for="txtHoTen">Họ tên (*):</label>
-                                <input type="text" class="form-control" style="color:#444" maxlength="250" id="varHoTen" name="varHoTen">
+                                <label for="txtHoTen">Họ tên (*)</label> <span class="price_ver">*</span>
+                                <input type="text" class="form-control" style="color:#444" id="varHoTen" name="varHoTen">
                                 <label for="txtHoTen" id="Label1" style="display:block;color:#a94442"></label>
                                 <label for="varHoTen" id="errten" class="error" style="display:block"></label>
                             </div>
                             <div class="form-group">
-                                <label for="txtEmail">Email:</label>
+                                <label for="txtEmail">Email</label>
                                 <input type="email" id="varEmail" style="color:#444" name="varEmail" class="form-control" />
                                 <label for="txtEmail" id="Label1" style="display:block;color:#a94442"></label>
                                 <label for="varEmail" id="erremail" class="error" style="display:block"></label>
                             </div>
                             <div class="form-group">
-                                <label for="txtPhone">Điện thoại:</label>
+                                <label for="txtPhone">Điện thoại</label>
                                 <input type="tel" class="form-control" style="color:#444" id="varPhone" name="varPhone">
                                 <label for="txtPhone" id="Label1" style="display:block;color:#a94442"></label>
                                 <label for="varPhone" id="errphone" class="error" style="display:block"></label>
                             </div>
 
                             <div class="form-group">
-                                <label for="txtDiaChi">Địa chỉ:</label>
+                                <label for="txtDiaChi">Địa chỉ</label>
                                 <input type="text" class="form-control" id="varDiaChi" name="varDiaChi">
                                 <label for="txtDiaChi" id="Label1" style="display:block;color:#a94442"></label>
                             </div>

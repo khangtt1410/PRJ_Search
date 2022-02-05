@@ -1,0 +1,129 @@
+﻿<style>
+    .error{
+        color:red;
+    }
+    .form-group {
+        display: inline-flex;
+    }
+</style>
+<div class="modal fade" id="mdlTuDien_AddEdit" aria-labelledby="exampleModalLongTitle">
+    <div class="modal-dialog" style="max-width: 1284px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TieuDe"></h5>
+            </div>
+            <div class="modal-body">
+                <input id="id" name="id" type="hidden" value="0" />
+                <h5>Thông tin từ điển</h5>
+                <div class="col-md-12 no-padding" style="border:1px dashed #f55454; padding:20px; margin-bottom:20px">
+                    <div class="col-md-12 form-group no-padding">
+                        <div class="col-md-3">
+                            <label>Mã từ điển</label>
+                            <input type="text" class="form-control" id="txtMaTuDien" placeholder="Nhập mã từ điển" />
+                            <span id="errMaTuDien" class="price_ver"></span>
+                        </div>
+                        <div class="col-md-9">
+                            <label>Tên từ điển</label>
+                            <input type="text" class="form-control" id="txtTenTuDien" placeholder="Nhập tên từ điển" />
+                            <span id="errTenTuDien" class="price_ver"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 no-padding form-group">
+                        <div class="col-md-4">
+                            <label>Tác giả</label>
+                            <input type="text" class="form-control" id="txtTacGia" placeholder="Nhập tác giả" />
+                        </div>
+                        <div class="col-md-4">
+                            <label>Dịch từ ngôn ngữ</label>
+                            <select class="form-control" id="dllTuNgonNgu">
+                                <option value="0">Chọn ngôn ngữ</option>
+                            </select>
+                            <span id="errNgonNguNguon" class="price_ver"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label>sang ngôn ngữ</label>
+                            <select class="form-control" id="dllDenNgonNgu">
+                                <option value="0">Chọn ngôn ngữ</option>
+                            </select>
+                            <span id="errNgonNguDich" class="price_ver"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 no-padding form-group">
+                        <button class="btn btn-primary" type="button" id="btnLuuThayDoi" onclick="Save()">
+                            Lưu từ điển
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
+                            Hủy bỏ
+                        </button>
+                    </div>
+                </div>
+                <h5>Thêm từ ngữ vào từ điển</h5>
+                <div class="col-md-12 no-padding" style="border:1px dashed #f55454; padding:20px; display:inline-flex">
+                    <div class="col-md-7 no-padding">
+                        <input type="hidden" id="txtIDTuNgu" value="0" />
+                        <div class="col-md-12">
+                            <label>Nội dung từ</label>
+                            <input type="text" class="form-control" id="txtNoiDungTu" placeholder="Nhập nội dung từ" />
+                            <span id="errNoiDungTu" class="price_ver"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Nghĩa của từ</label>
+                            <textarea type="text" rows="3" class="form-control" id="txtNghiaCuaTu"></textarea>
+                            <span id="errNghiaCuaTu" class="price_ver"></span>
+                        </div>
+                        <div class="col-md-12 form-group no-padding">
+                            <div class="col-md-6">
+                                <label>Từ đồng nghĩa</label>
+                                <textarea type="text" rows="3" class="form-control" id="txtTuDongNghia"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Từ trái nghĩa</label>
+                                <textarea type="text" rows="3" class="form-control" id="txtTuTraiNghia"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Thành ngữ</label>
+                            <textarea type="text" rows="3" class="form-control" id="txtThanhNgu"></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Ví dụ</label>
+                            <textarea type="text" rows="3" class="form-control" id="txtViDu"></textarea>
+                        </div>
+                        <div class="col-md-12 form-group no-padding">
+                            <div class="col-md-6">
+                                <label>Các cụm đồng từ</label>
+                                <textarea type="text" rows="3" class="form-control" id="txtCacCumDongTu"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Từ liên quan</label>
+                                <textarea type="text" rows="3" class="form-control" id="txtTuLienQuan"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-secondary" id="btnLamMoi">Làm mới</button>
+                            <button class="btn btn-primary" id="btnThemVaoTuDien" onclick="ThemTuNgu_MangTam()">Thêm vào từ điển</button>
+                        </div>
+                    </div>
+                    <div class="col-md-5 no-padding" style="background: #706c6c; height: 952px; overflow: auto">
+                        <table class="table table-hover table-bordered" style="background:#fff">
+                            <thead>
+                                <tr>
+                                    <th class="center" style="width:30%">Nội dung từ</th>
+                                    <th class="center">Ngữ nghĩa</th>
+                                    <th class="center" style="width:18%">Tác vụ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyTuNgu">
+                                <tr>
+                                    <td class="left">Nội dung từ</td>
+                                    <td class="left">Ngữ nghĩa</td>
+                                    <td class="center">Tác vụ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
