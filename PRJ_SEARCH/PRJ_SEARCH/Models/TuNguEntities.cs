@@ -15,8 +15,18 @@ namespace PRJ_SEARCH
             public List<TuNguView> lstDoc { get; set; }
             public CLSHelper.Models.PagingInfo PagingInfo { get; set; }
         }
-        public class TuNguView : tb_TuNgu
+        public class TuNguView
         {
+            public int ID { get; set; }
+            public string NoiDungTu { get; set; }
+            public string NghiaCuaTu { get; set; }
+            public string ThanhNgu { get; set; }
+            public string ViDu { get; set; }
+            public string TuDongNghia { get; set; }
+            public string TuTraiNghia { get; set; }
+            public string CumDongTu { get; set; }
+            public string TuLienQuan { get; set; }
+            public DateTime? NgayTao { get; set; }
             public string TenTuDien { get; set; }
             public string TenNgonNgu { get; set; }
             public string TenNguoiTao { get; set; }

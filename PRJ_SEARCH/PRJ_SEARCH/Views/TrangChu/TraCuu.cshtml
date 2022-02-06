@@ -1,0 +1,263 @@
+﻿@model List<TuNguEntities.TuNguView>
+@foreach (var item in Model)
+{
+    <div class="item-list-tungu">
+        <!-- ============================ Page Title Start================================== -->
+        <div class="ed_detail_head">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-5">
+
+                        <div class="property_video">
+                            <div class="thumb">
+                                <img class="pro_img img-fluid w100" src="~/Content/img/course-1.jpg" alt="7.jpg">
+                                <div class="overlay_icon">
+                                    <div class="bb-video-box">
+                                        <div class="bb-video-box-inner">
+                                            <div class="bb-video-box-innerup">
+                                                <a href="lstDetail" data-toggle="modal" data-target="#popup-video" class="theme-cl"><i class="ti-control-play"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-8 col-md-7">
+                        <div class="ed_detail_wrap">
+                            <ul class="cources_facts_list">
+                                <li class="facts-1">@item.TenTuDien</li>
+                                <li class="facts-5">@item.TenNgonNgu</li>
+                            </ul>
+                            <div class="ed_header_caption">
+                                <h2 class="ed_title">@item.NoiDungTu</h2>
+                                <ul>
+                                    <li><i class="ti-calendar"></i>@item.NgayTao.Value.ToString("dd/MM/yyyy G")</li>
+                                    <li><i class="ti-control-forward"></i>@item.TenNguoiTao</li>
+                                    <li><i class="ti-user"></i>502 lượt xem</li>
+                                </ul>
+                            </div>
+                            <div class="ed_header_short">
+                                <p>@Html.Raw(item.NghiaCuaTu)</p>
+                            </div>
+
+                            <div class="ed_rate_info">
+                                <div class="star_info">
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review_counter">
+                                    <strong class="high">4.7</strong> 3572 Đánh giá
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================ Page Title End ================================== -->
+        <!-- ============================ Nội dung tra cứu ================================== -->
+        <section class="bg-light">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-8">
+                        <!-- Overview -->
+                        <div class="edu_wraper">
+                            <h4 class="edu_title">Ví dụ minh họa</h4>
+                            <span>@Html.Raw(item.ViDu)</span>
+                        </div>
+
+                        <div class="edu_wraper">
+                            <h4 class="edu_title">Chi tiết</h4>
+                            <div id="accordionExample" class="accordion shadow circullum">
+
+                                <!-- Từ đồng nghĩa -->
+                                <div class="card">
+                                    <div id="headingOne" class="card-header bg-white shadow-sm border-0">
+                                        <h6 class="mb-0 accordion_title">
+                                            <a href="#" data-toggle="collapse" data-target="#collapseOne"
+                                               aria-expanded="true" aria-controls="collapseOne"
+                                               class="d-block position-relative text-dark collapsible-link py-2">- Từ điển từ đồng nghĩa: Các từ đồng nghĩa và ví dụ</a>
+                                        </h6>
+                                    </div>
+                                    <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
+                                        <div class="card-body pl-3 pr-3">
+                                            <h4 class="edu_title">Từ đồng nghĩa</h4>
+                                            <span>@Html.Raw(item.TuDongNghia)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Từ trái nghĩa -->
+                                <div class="card">
+                                    <div id="headingTwo" class="card-header bg-white shadow-sm border-0">
+                                        <h6 class="mb-0 accordion_title">
+                                            <a href="#" data-toggle="collapse" data-target="#collapseTwo"
+                                               aria-expanded="false" aria-controls="collapseTwo"
+                                               class="d-block position-relative collapsed text-dark collapsible-link py-2">- Từ điển từ trái nghĩa: Các từ trái nghĩa và ví dụ</a>
+                                        </h6>
+                                    </div>
+                                    <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
+                                        <div class="card-body pl-3 pr-3">
+                                            <h4 class="edu_title">Từ trái nghĩa</h4>
+                                            <span>@Html.Raw(item.TuTraiNghia)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Các thành ngữ -->
+                                <div class="card">
+                                    <div id="headingThree" class="card-header bg-white shadow-sm border-0">
+                                        <h6 class="mb-0 accordion_title">
+                                            <a href="#" data-toggle="collapse" data-target="#collapseThree"
+                                               aria-expanded="false" aria-controls="collapseThree"
+                                               class="d-block position-relative collapsed text-dark collapsible-link py-2">- Các thành ngữ</a>
+                                        </h6>
+                                    </div>
+                                    <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample" class="collapse">
+                                        <div class="card-body pl-3 pr-3">
+                                            <h4 class="edu_title">Thành ngữ</h4>
+                                            <span>@Html.Raw(item.ThanhNgu)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Cụm động từ -->
+                                <div class="card">
+                                    <div id="headingThree" class="card-header bg-white shadow-sm border-0">
+                                        <h6 class="mb-0 accordion_title">
+                                            <a href="#" data-toggle="collapse" data-target="#collapseFour"
+                                               aria-expanded="false" aria-controls="collapseFour"
+                                               class="d-block position-relative collapsed text-dark collapsible-link py-2">- Cụm động từ</a>
+                                        </h6>
+                                    </div>
+                                    <div id="collapseFour" aria-labelledby="headingFour" data-parent="#accordionExample" class="collapse">
+                                        <div class="card-body pl-3 pr-3">
+                                            <h4 class="edu_title">Cụm động từ</h4>
+                                            <span>@Html.Raw(item.CumDongTu)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Reviews -->
+                        <div class="rating-overview">
+                            <div class="rating-overview-box">
+                                <span class="rating-overview-box-total">4.2</span>
+                                <span class="rating-overview-box-percent">/ 5.0</span>
+                                <div class="star-rating" data-rating="5">
+                                    <i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i>
+                                </div>
+                            </div>
+
+                            <div class="rating-bars">
+                                <div class="rating-bars-item">
+                                    <span class="rating-bars-name">5 <i class="ti-star"></i></span>
+                                    <span class="rating-bars-inner">
+                                        <span class="rating-bars-rating high" data-rating="4.7">
+                                            <span class="rating-bars-rating-inner" style="width: 85%;"></span>
+                                        </span>
+                                        <strong>85%</strong>
+                                    </span>
+                                </div>
+                                <div class="rating-bars-item">
+                                    <span class="rating-bars-name">4  <i class="ti-star"></i></span>
+                                    <span class="rating-bars-inner">
+                                        <span class="rating-bars-rating good" data-rating="3.9">
+                                            <span class="rating-bars-rating-inner" style="width: 75%;"></span>
+                                        </span>
+                                        <strong>75%</strong>
+                                    </span>
+                                </div>
+                                <div class="rating-bars-item">
+                                    <span class="rating-bars-name">3  <i class="ti-star"></i></span>
+                                    <span class="rating-bars-inner">
+                                        <span class="rating-bars-rating mid" data-rating="3.2">
+                                            <span class="rating-bars-rating-inner" style="width: 52.2%;"></span>
+                                        </span>
+                                        <strong>53%</strong>
+                                    </span>
+                                </div>
+                                <div class="rating-bars-item">
+                                    <span class="rating-bars-name">1  <i class="ti-star"></i></span>
+                                    <span class="rating-bars-inner">
+                                        <span class="rating-bars-rating poor" data-rating="2.0">
+                                            <span class="rating-bars-rating-inner" style="width:20%;"></span>
+                                        </span>
+                                        <strong>20%</strong>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+
+                        <div class="ed_view_box style_2">
+
+                            <div class="ed_author">
+                                <div class="ed_author_thumb">
+                                    <img class="img-fluid" src="~/Content/img/user-5.jpg" alt="7.jpg">
+                                </div>
+                                <div class="ed_author_box">
+                                    <h4>Từ liên quan</h4>
+                                    <span>Các từ ngữ liên quan có trong hệ thống từ điển</span>
+                                </div>
+                            </div>
+                            <div class="ed_view_features pl-4">
+                                <span>Bao gồm:</span>
+                                <span>@Html.Raw(item.TuLienQuan)</span>
+                            </div>
+                        </div>
+
+                        <!-- Submit Reviews -->
+                        <div class="edu_wraper">
+                            <h4 class="edu_title">Ngôn ngữ khác</h4>
+                            <div class="review-form-box">
+                                <div class="row">
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Ngôn ngữ</label>
+                                            <select class="form-control" id="cbNgonNgu">
+                                                @foreach (var itemLang in ViewBag.lstNgonNgu)
+                                                {
+                                                    <option value="@itemLang.ID">@itemLang.TenNgonNgu</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Kết quả</label>
+                                            <span class="form-control ht-140" id="lbKetQua"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-theme">Tra cứu</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ End Nội dung tra cứu ================================== -->
+
+    </div>
+}

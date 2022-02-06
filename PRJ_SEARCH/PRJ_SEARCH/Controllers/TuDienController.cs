@@ -13,16 +13,7 @@ namespace PRJ_SEARCH.Controllers
         // GET: TuDien
         public ActionResult Index()
         {
-            var checkLogin = Session["IDNguoiDung"];
-            string res = Request.Url.Scheme + "://" + Request.Url.Authority;
-            if (checkLogin == null)
-            {
-                return View(res + "/TrangChu/Index.cshtml");
-            }
-            else
-            {
                 return View();
-            }
         }
         /// <summary>
         /// Lấy danh sách từ điển

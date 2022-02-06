@@ -1,6 +1,5 @@
 ﻿//Khai báo mảng tạm chứa danh sách từ ngữ
 var lstTuNgu = [];
-
 //Hàm xử lý tìm kiếm, load trang theo tiêu chí tìm kiếm
 function Search() {
     //Lấy thông tin tại các ô tìm kiếm
@@ -99,7 +98,10 @@ function ResetForm_TuNgu() {
     $('#txtThanhNgu').val('');
     $('#txtCacCumDongTu').val('');
     $('#txtTuLienQuan').val('');
-
+    $('textarea').each(function () {
+        var name = $(this).attr('name');
+        CKEDITOR.replace(name);
+    });
 }
 //Hàm xử lý gọi form thêm mới/ sửa đổi
 function ShowModalAddEdit(id) {
@@ -227,13 +229,13 @@ function Save() {
 function ThemTuNgu_MangTam() {
     var idTuNgu = $('#txtIDTuNgu').val();
     var noiDungTu = $('#txtNoiDungTu').val();
-    var nghiaCuaTu = $('#txtNghiaCuaTu').val();
-    var tuDongNghia = $('#txtTuDongNghia').val();
-    var tuTraiNghia = $('#txtTuTraiNghia').val();
-    var viDu = $('#txtViDu').val();
-    var thanhNgu = $('#txtThanhNgu').val();
-    var cumDongTu = $('#txtCacCumDongTu').val();
-    var tuLienQuan = $('#txtTuLienQuan').val();
+    var nghiaCuaTu = CKEDITOR.instances["txtNghiaCuaTu"].getData();
+    var tuDongNghia = CKEDITOR.instances["txtTuDongNghia"].getData();
+    var tuTraiNghia = CKEDITOR.instances["txtTuTraiNghia"].getData();
+    var viDu = CKEDITOR.instances["txtViDu"].getData();
+    var thanhNgu = CKEDITOR.instances["txtThanhNgu"].getData();
+    var cumDongTu = CKEDITOR.instances["txtCacCumDongTu"].getData();
+    var tuLienQuan = CKEDITOR.instances["txtTuLienQuan"].getData();
     //Khởi tạo bản ghi 
     var objTuNgu = {};
     objTuNgu.ID = idTuNgu;
@@ -297,13 +299,13 @@ function SuaDoiTuNgu(noiDungTu) {
     var existObj = lstTuNgu.filter(k => k.NoiDungTu.toLowerCase() == noiDungTu.toLowerCase())[0];
     $('#txtIDTuNgu').val(existObj.ID);
     $('#txtNoiDungTu').val(existObj.NoiDungTu);
-    $('#txtNghiaCuaTu').val(existObj.NghiaCuaTu);
-    $('#txtTuDongNghia').val(existObj.TuDongNghia);
-    $('#txtTuTraiNghia').val(existObj.TuTraiNghia);
-    $('#txtViDu').val(existObj.ViDu);
-    $('#txtThanhNgu').val(existObj.ThanhNgu);
-    $('#txtCacCumDongTu').val(existObj.CumDongTu);
-    $('#txtTuLienQuan').val(existObj.TuLienQuan);
+    CKEDITOR.instances["txtNghiaCuaTu"].setData(existObj.NghiaCuaTu);
+    CKEDITOR.instances["txtTuDongNghia"].setData(existObj.TuDongNghia);
+    CKEDITOR.instances["txtTuTraiNghia"].setData(existObj.TuTraiNghia);
+    CKEDITOR.instances["txtViDu"].setData(existObj.ViDu);
+    CKEDITOR.instances["txtThanhNgu"].setData(existObj.ThanhNgu);
+    CKEDITOR.instances["txtCacCumDongTu"].setData(existObj.CumDongTu);
+    CKEDITOR.instances["txtTuLienQuan"].setData(existObj.TuLienQuan);
 }
 //Hàm xóa từ ngữ
 function XoaBoTuNgu(noiDungTu) {
