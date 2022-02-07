@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace PRJ_SEARCH
 {
-    public class NguoiDungController : Controller
+    public class NguoiDungController : RouterConfigController
     {
         SearchDBDataContext db = new SearchDBDataContext();
         // GET: NguoiDung

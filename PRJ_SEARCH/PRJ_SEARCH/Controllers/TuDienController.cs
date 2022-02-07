@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace PRJ_SEARCH.Controllers
 {
-    public class TuDienController : Controller
+    public class TuDienController : RouterConfigController
     {
         SearchDBDataContext db = new SearchDBDataContext();
         // GET: TuDien

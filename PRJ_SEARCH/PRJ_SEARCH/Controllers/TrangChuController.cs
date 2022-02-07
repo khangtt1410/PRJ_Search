@@ -11,10 +11,14 @@ namespace PRJ_SEARCH.Controllers
         SearchDBDataContext db = new SearchDBDataContext();
         // GET: TrangChu
         public ActionResult Index()
-        {
+        { 
+            //lấy danh mục ngôn ngữ
+            List<tb_NgonNgu> lstNgonNgu = new List<tb_NgonNgu>();
+            lstNgonNgu = db.tb_NgonNgus.Where(k => k.TrangThai == true).ToList();
+            ViewBag.lstNgonNgu = lstNgonNgu;
             return View();
         }
-        public ActionResult TraCuu(string keyWord = "")
+        public ActionResult TraCuu(string keyWord = "", int tuNgonNgu = 0, int denNgonNgu = 0)
         {
             //Lấy tất cả các từ có trong bảng từ ngữ phù hợp điều kiện
             string sqlQuyery = "Select tn.ID, tn.NgayTao, tn.NoiDungTu, tn.NghiaCuaTu, tn.TuDongNghia, tn.TuTraiNghia, tn.ThanhNgu, tn.ViDu, " +
@@ -24,8 +28,10 @@ namespace PRJ_SEARCH.Controllers
                 "join tb_TuDien td on td.ID = tn.IDTuDien and td.TrangThai = 1 " +
                 "join tb_NguoiDung nd on nd.ID = tn.NguoiTao and nd.TrangThai = 1 " +
                 "left join tb_NgonNgu nnn on nnn.ID = td.IDNgonNguNguon and nnn.TrangThai = 1 " +
-                "left join tb_NgonNgu nnd on nnd.ID = td.IDNgonNguDich and nnn.TrangThai = 1 " +
+                "left join tb_NgonNgu nnd on nnd.ID = td.IDNgonNguDich and nnd.TrangThai = 1 " +
                 "where tn.TrangThai = 1 " +
+                $"and (nnn.ID = {tuNgonNgu} or {tuNgonNgu} = 0) " +
+                $"and (nnd.ID = {denNgonNgu} or {denNgonNgu} = 0) " +
                 $"and ((tn.NoiDungTu collate Latin1_General_CI_AI like N'%{keyWord.Trim()}%' or '{keyWord.Trim()}' = '')) ";
             List<TuNguEntities.TuNguView> lstTuNgu = db.ExecuteQuery<TuNguEntities.TuNguView>(sqlQuyery).ToList();
             //lấy danh mục ngôn ngữ

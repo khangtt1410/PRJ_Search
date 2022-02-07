@@ -91,17 +91,18 @@ function ResetForm_TuNgu() {
     //reset thông tin từ ngữ
     $('#txtIDTuNgu').val(0);
     $('#txtNoiDungTu').val('');
-    $('#txtNghiaCuaTu').val('');
-    $('#txtTuDongNghia').val('');
-    $('#txtTuTraiNghia').val('');
-    $('#txtViDu').val('');
-    $('#txtThanhNgu').val('');
-    $('#txtCacCumDongTu').val('');
-    $('#txtTuLienQuan').val('');
     $('textarea').each(function () {
         var name = $(this).attr('name');
         CKEDITOR.replace(name);
     });
+    CKEDITOR.instances["txtNghiaCuaTu"].setData('');
+    CKEDITOR.instances["txtTuDongNghia"].setData('');
+    CKEDITOR.instances["txtTuTraiNghia"].setData('');
+    CKEDITOR.instances["txtViDu"].setData('');
+    CKEDITOR.instances["txtThanhNgu"].setData('');
+    CKEDITOR.instances["txtCacCumDongTu"].setData('');
+    CKEDITOR.instances["txtTuLienQuan"].setData('');
+
 }
 //Hàm xử lý gọi form thêm mới/ sửa đổi
 function ShowModalAddEdit(id) {

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace PRJ_SEARCH.Controllers
 {
-    public class NgonNguController : Controller
+    public class NgonNguController : RouterConfigController
     {
         SearchDBDataContext db = new SearchDBDataContext();
         // GET: NgonNgu

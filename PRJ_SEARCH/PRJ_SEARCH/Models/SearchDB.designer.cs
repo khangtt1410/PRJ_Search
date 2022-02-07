@@ -45,7 +45,7 @@ namespace PRJ_SEARCH
     #endregion
 		
 		public SearchDBDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SearchDBConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SearchDBConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

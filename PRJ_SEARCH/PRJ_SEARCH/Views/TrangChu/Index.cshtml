@@ -14,27 +14,61 @@
                     <h1 class="big-header-capt cl_2 mb-2">Phần mềm tra cứu từ điển Online</h1>
                     <p>Cung cấp cho người dùng tiện ích nhanh nhất, bổ ích nhất trong quá trình học tập và làm việc</p>
                     <div class="mt-4">
-                        <div class="banner-search shadow_high">
+                        <div class="banner-search shadow_high" style="background:none">
                             <div class="search_hero_wrapping">
                                 <div class="row">
-
-                                    <div class="col-lg-10 col-md-10 col-sm-12">
-                                        <div class="form-group">
-                                            <div class="input-with-icon">
-                                                <input id="txtKeyWord" type="text" class="form-control" placeholder="Nhập từ ngữ cần tra cứu">
-                                                <img src="~/Content/img/search.svg" class="search-icon" alt="">
+                                    <div class="col-md-12">
+                                        <div class="banner-search shadow_high" style="background:none">
+                                            <div class="search_hero_wrapping">
+                                                <div class="row" style="margin-bottom:10px; background:#fff">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 small-pad">
+                                                        <div class="form-group" style="padding-left:10px">
+                                                            <div class="input-with-icon">
+                                                                <select id="ddlTuNgonNgu" class="form-control" style="height:100%">
+                                                                    <option value="">Dịch từ ngôn ngữ</option>
+                                                                    @foreach (var itemLang in ViewBag.lstNgonNgu)
+                                                                    {
+                                                                        <option value="@itemLang.ID">@itemLang.TenNgonNgu</option>
+                                                                    }
+                                                                </select>
+                                                                <img src="~/Content/img/pin.svg" class="search-icon" alt="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 small-pad" style="padding-left:10px">
+                                                        <div class="form-group">
+                                                            <div class="input-with-icon">
+                                                                <select id="ddlDenNgonNgu" class="form-control" style="height:100%">
+                                                                    <option value="">Sang ngôn ngữ</option>
+                                                                    @foreach (var itemLang in ViewBag.lstNgonNgu)
+                                                                    {
+                                                                        <option value="@itemLang.ID">@itemLang.TenNgonNgu</option>
+                                                                    }
+                                                                </select>
+                                                                <img src="~/Content/img/pin.svg" class="search-icon" alt="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" data-select2-id="7" style="background: #fff">
+                                                    <div class="col-lg-9 col-md-9 col-sm-12 br-right">
+                                                        <div class="form-group">
+                                                            <div class="input-with-icon">
+                                                                <input id="txtKeyWord" type="text" class="form-control" placeholder="Từ khóa tìm kiếm">
+                                                                <img src="~/Content/img/search.svg" class="search-icon" alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-12 pl-0">
+                                                        <div class="form-group none">
+                                                            <a href="#" class="btn search-btn full-width" onclick="TraCuu()"><i class="fa fa-search"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
-                                        <div class="form-group none">
-                                            <a href="#" class="btn search-btn full-width" onclick="TraCuu()">Tìm</a>
-                                        </div>
-                                    </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>

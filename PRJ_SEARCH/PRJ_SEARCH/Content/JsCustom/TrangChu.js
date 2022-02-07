@@ -1,16 +1,23 @@
 ﻿//Hàm tra cứu
 function TraCuu() {
     var keyWord = $('#txtKeyWord').val();
+    var tuNgonNgu = $('#ddlTuNgonNgu').val();
+    var denNgonNgu = $('#ddlDenNgonNgu').val();
     //Kiểm tra xem phần chi tiết đang ẩn hay hiện
     var checkDisplay = $('#lstDetail').is(':hidden');
-    $('#lstDetail').attr('hidden', !checkDisplay);
-
+    if (keyWord != '' && checkDisplay == true) {
+        $('#lstDetail').attr('hidden', false);
+    }
     $("html, body").animate({ scrollTop: 650 }, 1000);
     //Xử lý sự kiện để hiện thông tin
 
     $.ajax({
         url: '/TrangChu/TraCuu',
-        data: { keyWord: keyWord },
+        data: {
+            keyWord: keyWord,
+            tuNgonNgu: tuNgonNgu,
+            denNgonNgu: denNgonNgu
+        },
         type: 'GET',
         success: function (res) {
             $('#lstDetail').html(res);
