@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Speech.Synthesis;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Google.API.Search;
 
 namespace PRJ_SEARCH.Controllers
 {
@@ -40,25 +46,109 @@ namespace PRJ_SEARCH.Controllers
             List<tb_NgonNgu> lstNgonNgu = new List<tb_NgonNgu>();
             lstNgonNgu = db.tb_NgonNgus.Where(k => k.TrangThai == true).ToList();
             ViewBag.lstNgonNgu = lstNgonNgu;
-            return PartialView(lstTuNgu);
-        }
-        [HttpPost]
-        public async Task<JsonResult> SpeakWord(string word)
-        {
-            string pathSave = "~/Content/sound/" + word + ".wav";
-            Task<JsonResult> task = Task.Run(() =>
+
+            //Tìm kiếm trên website
+            //string uriString = "http://www.google.com/search";
+
+            //WebClient webClient = new WebClient();
+
+            //NameValueCollection nameValueCollection = new NameValueCollection();
+            //nameValueCollection.Add("q", keyWord);
+
+            //webClient.QueryString.Add(nameValueCollection);
+            //var res = webClient.DownloadString(uriString);
+            //WebClient Web = new WebClient();
+            //string Source = Web.DownloadString("https://www.google.com/search?client=" + keyWord);
+            //Regex regex = new Regex(@"^http(s) ?://([\w-]+.)+[\w-]+(/[\w%&=])?$");
+            //MatchCollection Collection = regex.Matches(res);
+            List<string> Urls = new List<string>();
+            //foreach (Match match in Collection)
+            //{
+            //    Urls.Add(match.ToString());
+            //}
+
+            //string raw = "http://www.google.com/search?num=39&q={0}&btnG=Search";
+            //string search = string.Format(raw, HttpUtility.UrlEncode(keyWord));
+
+           //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(search);
+            //using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            //{
+            //    using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
+            //    {
+            //        string html = reader.ReadToEnd();
+            //        string lookup = "(<a href=\")(\\w+[a-zA-Z0-9.-?=/]*)\" class=l";
+            //        MatchCollection matches = Regex.Matches(html, lookup);
+
+            //        for (int i = 0; i < matches.Count; i++)
+            //        {
+            //            string match = matches[i].Groups[2].Value;
+            //            Urls.Add(match.ToString());
+            //        }
+            //    }
+            //}
+            GwebSearchClient gweb = new GwebSearchClient("http://ubound.hipchat.com");
+            GwebSearchClient client = new GwebSearchClient("www.google.com");
+            IList<IWebResult> results = client.Search(keyWord, 10); //max is 64
+           // var results = gweb.Search(keyWord, 32);
+
+            try
             {
-                using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer())
+                if (results.Count > 0)
                 {
-                    speechSynthesizer.SetOutputToWaveFile(Server.MapPath(pathSave));
-                    speechSynthesizer.Speak(word);
-                    return Json(new
+                    foreach (var result in results)
                     {
-                        pathSave = pathSave
-                    }, JsonRequestBehavior.AllowGet);
+                        var ew = result.Url;
+                    }
                 }
-            });
-            return await task;
+            }
+            catch
+            {
+                string mes = "Error in search!";
+            }
+
+
+            var gclient = new GwebSearchClient("www.google.com");
+            var searchResult = gclient.Search(keyWord, 1000);
+
+            if (searchResult != null)
+            {
+                var ress =  searchResult.Select(result => result.Url).ToList();
+            }
+
+            //List<string> res = new List<string>();
+            //var client = new GwebSearchClient("http://www.google.com");
+            //var results = client.Search("google api for .NET", 100);
+            //foreach (var webResult in results)
+            //{
+            //    //Console.WriteLine("{0}, {1}, {2}", webResult.Title, webResult.Url, webResult.Content);
+            //    res.Add(webResult.ToString());
+            //}
+
+            TuNguEntities.lstData data = new TuNguEntities.lstData()
+            {
+                lstDoc = lstTuNgu,
+                //Doc_Online = res
+            };
+            return PartialView(data);
         }
+
+        //[HttpPost]
+        //public async Task<JsonResult> SpeakWord(string word)
+        //{
+        //    string pathSave = "~/Content/sound/" + word + ".wav";
+        //    Task<JsonResult> task = Task.Run(() =>
+        //    {
+        //        using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer())
+        //        {
+        //            speechSynthesizer.SetOutputToWaveFile(Server.MapPath(pathSave));
+        //            speechSynthesizer.Speak(word);
+        //            return Json(new
+        //            {
+        //                pathSave = pathSave
+        //            }, JsonRequestBehavior.AllowGet);
+        //        }
+        //    });
+        //    return await task;
+        //}
     }
 }

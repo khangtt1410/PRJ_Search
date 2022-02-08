@@ -13,6 +13,7 @@ namespace PRJ_SEARCH
             /// abc xyz
             /// </summary>
             public List<TuNguView> lstDoc { get; set; }
+            public string Doc_Online { get; set; }
             public CLSHelper.Models.PagingInfo PagingInfo { get; set; }
         }
         public class TuNguView

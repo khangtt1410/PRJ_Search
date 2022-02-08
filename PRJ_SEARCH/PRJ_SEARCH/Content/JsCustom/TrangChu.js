@@ -4,9 +4,9 @@ function TraCuu() {
     var tuNgonNgu = $('#ddlTuNgonNgu').val();
     var denNgonNgu = $('#ddlDenNgonNgu').val();
     //Kiểm tra xem phần chi tiết đang ẩn hay hiện
-    var checkDisplay = $('#lstDetail').is(':hidden');
+    var checkDisplay = $('#bodyResult').is(':hidden');
     if (keyWord != '' && checkDisplay == true) {
-        $('#lstDetail').attr('hidden', false);
+        $('#bodyResult').attr('hidden', false);
     }
     $("html, body").animate({ scrollTop: 650 }, 1000);
     //Xử lý sự kiện để hiện thông tin
@@ -20,7 +20,7 @@ function TraCuu() {
         },
         type: 'GET',
         success: function (res) {
-            $('#lstDetail').html(res);
+            $('#bodyResult').html(res);
         },
         error: function (res) {
 
