@@ -29,3 +29,18 @@ function TraCuu() {
         }
     })
 }
+//Hàm đọc từ ngữ
+function SpeakWord(id) {
+    var word = $('#txtNoiDungTu_' + id).html();
+    $.ajax({
+        url: '/TrangChu/SpeakWord',
+        dataType: 'JSON',
+        type: 'POST',
+        data: { word: word },
+        success: function (res)
+        {
+            $('audio_' + id).attr('src', res.pathSave);
+            $('audio_' + id).click();
+        }
+    })
+}

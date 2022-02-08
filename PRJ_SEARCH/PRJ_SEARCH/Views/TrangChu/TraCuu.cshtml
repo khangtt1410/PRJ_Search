@@ -12,8 +12,9 @@
 
                             <div class="property_video">
                                 <div class="thumb">
+                                    <audio autoplay="autoplay" src="" id="audio_@item.ID"></audio>
                                     <img class="pro_img img-fluid w100" src="~/Content/img/course-1.jpg" alt="7.jpg">
-                                    <div class="overlay_icon">
+                                    <div class="overlay_icon" onclick="SpeakWord(@item.ID)">
                                         <div class="bb-video-box">
                                             <div class="bb-video-box-inner">
                                                 <div class="bb-video-box-innerup">
@@ -34,7 +35,7 @@
                                     <li class="facts-5">@item.TenNgonNgu</li>
                                 </ul>
                                 <div class="ed_header_caption">
-                                    <h2 class="ed_title">@item.NoiDungTu</h2>
+                                    <h2 class="ed_title" id="txtNoiDungTu_@item.ID">@item.NoiDungTu</h2>
                                     <ul>
                                         <li><i class="ti-calendar"></i>@item.NgayTao.Value.ToString("dd/MM/yyyy")</li>
                                         <li><i class="ti-control-forward"></i>@item.TenNguoiTao</li>

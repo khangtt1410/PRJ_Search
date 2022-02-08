@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Speech.Synthesis;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -39,6 +41,24 @@ namespace PRJ_SEARCH.Controllers
             lstNgonNgu = db.tb_NgonNgus.Where(k => k.TrangThai == true).ToList();
             ViewBag.lstNgonNgu = lstNgonNgu;
             return PartialView(lstTuNgu);
+        }
+        [HttpPost]
+        public async Task<JsonResult> SpeakWord(string word)
+        {
+            string pathSave = "~/Content/sound/" + word + ".wav";
+            Task<JsonResult> task = Task.Run(() =>
+            {
+                using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer())
+                {
+                    speechSynthesizer.SetOutputToWaveFile(Server.MapPath(pathSave));
+                    speechSynthesizer.Speak(word);
+                    return Json(new
+                    {
+                        pathSave = pathSave
+                    }, JsonRequestBehavior.AllowGet);
+                }
+            });
+            return await task;
         }
     }
 }
