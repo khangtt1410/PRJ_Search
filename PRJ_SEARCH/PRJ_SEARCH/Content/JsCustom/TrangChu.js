@@ -31,16 +31,23 @@ function TraCuu() {
 }
 //Hàm đọc từ ngữ
 function SpeakWord(id) {
+    //$('#audio_' + id)[0].load();
+    //$('#audio_' + id)[0].play();
     var word = $('#txtNoiDungTu_' + id).html();
     $.ajax({
-        url: '/TrangChu/SpeakWord',
+        url: '/TrangChu/TTS',
         dataType: 'JSON',
         type: 'POST',
         data: { word: word },
         success: function (res)
         {
-            $('audio_' + id).attr('src', res.pathSave);
-            $('audio_' + id).click();
+            $('#audio_' + id).attr('src', res.pathSave);
+            var audio = {};
+            audio["walk"] = new Audio();
+            audio["walk"].src = res.pathSave;
+            audio["walk"].addEventListener('load', function () {
+                audio["walk"].play();
+            });
         }
     })
 }

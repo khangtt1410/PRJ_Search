@@ -32,6 +32,7 @@ namespace PRJ_SEARCH
             public string TenNgonNgu { get; set; }
             public string TenNguoiTao { get; set; }
             public string TenNguoiSua { get; set; }
+            public string PathVoice { get; set; }
         }
     }
 }

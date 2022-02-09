@@ -23,9 +23,12 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-4 col-md-5">
 
+                                            <audio controls>
+                                                <source id="audio_@item.ID" src="@item.PathVoice" type="audio/mpeg">
+                                            </audio>
                                             <div class="property_video">
                                                 <div class="thumb">
-                                                    <audio autoplay="autoplay" src="" id="audio_@item.ID"></audio>
+                                                    @*<audio src="" id="audio_@item.ID"  type="audio/ogg"></audio>*@
                                                     <img class="pro_img img-fluid w100" src="~/Content/img/course-1.jpg" alt="7.jpg">
                                                     <div class="overlay_icon" onclick="SpeakWord(@item.ID)">
                                                         <div class="bb-video-box">

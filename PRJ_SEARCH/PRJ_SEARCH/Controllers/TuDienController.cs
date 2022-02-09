@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Web;
 using System.Web.Mvc;
 
@@ -134,6 +136,7 @@ namespace PRJ_SEARCH.Controllers
                 List<tb_TuNgu> lstTuNgu = JsonConvert.DeserializeObject<List<tb_TuNgu>>(c["lstTuNgu"]);
                 foreach (var item in lstTuNgu)
                 {
+                    string pathVoice = CreateVoice(item.NoiDungTu);
                     tb_TuNgu objNew = new tb_TuNgu
                     {
                         CumDongTu = item.CumDongTu,
@@ -148,9 +151,11 @@ namespace PRJ_SEARCH.Controllers
                         TuDongNghia = item.TuDongNghia,
                         TuLienQuan = item.TuLienQuan,
                         TuTraiNghia = item.TuTraiNghia,
-                        ViDu = item.ViDu
+                        ViDu = item.ViDu,
+                        PathVoice = pathVoice,
                     };
                     db.tb_TuNgus.InsertOnSubmit(objNew);
+
                 }
                 db.SubmitChanges();
 
@@ -176,11 +181,14 @@ namespace PRJ_SEARCH.Controllers
                 foreach (var itemDel in lstDel)
                 {
                     itemDel.TrangThai = false;
+
+                    System.IO.File.Delete(Server.MapPath(itemDel.PathVoice));
                 }
                 db.SubmitChanges();
                 //Duyệt danh sách từ ngữ mới
                 foreach (var item in lstNew)
                 {
+                    string pathVoice = CreateVoice(item.NoiDungTu);
                     var existObj = lstOld.FirstOrDefault(k => k.ID == item.ID);
                     if (existObj != null)
                     {
@@ -197,6 +205,7 @@ namespace PRJ_SEARCH.Controllers
                         existObj.TuLienQuan = item.TuLienQuan;
                         existObj.TuTraiNghia = item.TuTraiNghia;
                         existObj.ViDu = item.ViDu;
+                        existObj.PathVoice = pathVoice;
                     }
                     else
                     {
@@ -214,7 +223,8 @@ namespace PRJ_SEARCH.Controllers
                             TuDongNghia = item.TuDongNghia,
                             TuLienQuan = item.TuLienQuan,
                             TuTraiNghia = item.TuTraiNghia,
-                            ViDu = item.ViDu
+                            ViDu = item.ViDu,
+                            PathVoice = pathVoice
                         };
                         db.tb_TuNgus.InsertOnSubmit(objNew);
                     }
@@ -226,6 +236,24 @@ namespace PRJ_SEARCH.Controllers
                 status = status,
                 mess = mess
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        public string CreateVoice(string word)
+        {
+            using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer())
+            {
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    string pathSave = "~/Content/sound/";
+                    speechSynthesizer.SetOutputToWaveStream(stream);
+                    speechSynthesizer.Speak(word);
+                    var bytes = stream.GetBuffer();
+                    string speechFile = Server.MapPath(Path.Combine(pathSave, word + ".mp3"));
+
+                    System.IO.File.WriteAllBytes(speechFile, bytes);
+                    return pathSave = Path.Combine(pathSave, word + ".mp3");
+                }
+            }
         }
     }
 }

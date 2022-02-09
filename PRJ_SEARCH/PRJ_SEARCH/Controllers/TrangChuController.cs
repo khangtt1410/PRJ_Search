@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Google.API.Search;
+using Google.Apis.Auth.OAuth2;
+using Google.Cloud.TextToSpeech.V1;
 
 namespace PRJ_SEARCH.Controllers
 {
@@ -30,7 +32,7 @@ namespace PRJ_SEARCH.Controllers
         {
             //Lấy tất cả các từ có trong bảng từ ngữ phù hợp điều kiện
             string sqlQuyery = "Select tn.ID, tn.NgayTao, tn.NoiDungTu, tn.NghiaCuaTu, tn.TuDongNghia, tn.TuTraiNghia, tn.ThanhNgu, tn.ViDu, " +
-                "tn.TuLienQuan, tn.CumDongTu, td.TenTuDien, nd.HoTen as TenNguoiTao, " +
+                "tn.TuLienQuan, tn.CumDongTu, td.TenTuDien, nd.HoTen as TenNguoiTao, tn.PathVoice, " +
                 "CONCAT(nnn.TenNgonNgu, ' - ', nnd.TenNgonNgu) as TenNgonNgu " +
                 "from tb_TuNgu tn " +
                 "join tb_TuDien td on td.ID = tn.IDTuDien and td.TrangThai = 1 " +
@@ -86,34 +88,34 @@ namespace PRJ_SEARCH.Controllers
             //        }
             //    }
             //}
-            GwebSearchClient gweb = new GwebSearchClient("http://ubound.hipchat.com");
-            GwebSearchClient client = new GwebSearchClient("www.google.com");
-            IList<IWebResult> results = client.Search(keyWord, 10); //max is 64
-           // var results = gweb.Search(keyWord, 32);
+           // GwebSearchClient gweb = new GwebSearchClient("http://ubound.hipchat.com");
+           // GwebSearchClient client = new GwebSearchClient("www.google.com");
+           // IList<IWebResult> results = client.Search(keyWord, 10); //max is 64
+           //// var results = gweb.Search(keyWord, 32);
 
-            try
-            {
-                if (results.Count > 0)
-                {
-                    foreach (var result in results)
-                    {
-                        var ew = result.Url;
-                    }
-                }
-            }
-            catch
-            {
-                string mes = "Error in search!";
-            }
+           // try
+           // {
+           //     if (results.Count > 0)
+           //     {
+           //         foreach (var result in results)
+           //         {
+           //             var ew = result.Url;
+           //         }
+           //     }
+           // }
+           // catch
+           // {
+           //     string mes = "Error in search!";
+           // }
 
 
-            var gclient = new GwebSearchClient("www.google.com");
-            var searchResult = gclient.Search(keyWord, 1000);
+           // var gclient = new GwebSearchClient("www.google.com");
+           // var searchResult = gclient.Search(keyWord, 1000);
 
-            if (searchResult != null)
-            {
-                var ress =  searchResult.Select(result => result.Url).ToList();
-            }
+           // if (searchResult != null)
+           // {
+           //     var ress =  searchResult.Select(result => result.Url).ToList();
+           // }
 
             //List<string> res = new List<string>();
             //var client = new GwebSearchClient("http://www.google.com");
@@ -131,24 +133,5 @@ namespace PRJ_SEARCH.Controllers
             };
             return PartialView(data);
         }
-
-        //[HttpPost]
-        //public async Task<JsonResult> SpeakWord(string word)
-        //{
-        //    string pathSave = "~/Content/sound/" + word + ".wav";
-        //    Task<JsonResult> task = Task.Run(() =>
-        //    {
-        //        using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer())
-        //        {
-        //            speechSynthesizer.SetOutputToWaveFile(Server.MapPath(pathSave));
-        //            speechSynthesizer.Speak(word);
-        //            return Json(new
-        //            {
-        //                pathSave = pathSave
-        //            }, JsonRequestBehavior.AllowGet);
-        //        }
-        //    });
-        //    return await task;
-        //}
     }
 }
