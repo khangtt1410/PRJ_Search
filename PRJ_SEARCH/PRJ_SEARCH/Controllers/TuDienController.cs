@@ -251,7 +251,7 @@ namespace PRJ_SEARCH.Controllers
                 {
                     using (MemoryStream stream = new MemoryStream())
                     {
-                        string pathSave = "~/Content/sound/";
+                        string pathSave = "/Content/sound/";
                         speechSynthesizer.SetOutputToWaveStream(stream);
                         speechSynthesizer.Speak(word);
                         var bytes = stream.GetBuffer();

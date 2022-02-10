@@ -166,12 +166,6 @@ function loadPartial() {
         type: 'GET',
         success: function (res) {
             $('#tblNguoiDung').html(res);
-            //$('#tblNguoiDung').find('tbody  tr[data-id]').each(function () {
-            //    idOfIiem = $(this).attr('data-id');
-            //    if ($.inArray(Number(idOfIiem), mangId) >= 0) {
-            //        $(this).find('.one-delete-js').prop('checked', true);
-            //    }
-            //})
         },
         error: function () {
            
@@ -191,8 +185,6 @@ function Search() {
         },
         success: function (res) {
             $('#tblNguoiDung').html(res);
-            //Lấy thông tin tại các ô tìm kiếm
-            $('#txtSearch').val(ten);
         }
     })
 }

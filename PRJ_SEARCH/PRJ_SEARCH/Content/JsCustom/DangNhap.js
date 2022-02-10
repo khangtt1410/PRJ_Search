@@ -4,8 +4,9 @@ function DangNhap() {
     var matKhau = $('#txtMatKhau').val();
     $.ajax({
         url: '/CheckValidAccount/DangNhap',
-        type: 'POST',
+        type: 'GET',
         dataType: 'JSON',
+        async:false,
         data: {
             taikhoan: taiKhoan,
             matkhau: matKhau
@@ -43,4 +44,14 @@ function DangXuat() {
 function ResetError() {
     $('#errDangNhap').hide();
     $('#errDangNhap span').html('');
+}
+//Hàm xử lý nhấn nút enter
+function OnKeyPress_Enter (e) {
+    if (e.keyCode == '13') {
+        var taiKhoan = $('#txtTenDangNhap').val();
+        var matKhau = $('#txtMatKhau').val();
+        if (taiKhoan != "" && matKhau != "") {
+            DangNhap();
+        }
+    }
 }

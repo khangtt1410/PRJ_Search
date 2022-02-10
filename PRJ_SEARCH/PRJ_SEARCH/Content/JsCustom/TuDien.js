@@ -13,8 +13,6 @@ function Search() {
         },
         success: function (res) {
             $('#tblTuDien').html(res);
-            //Lấy thông tin tại các ô tìm kiếm
-            $('#txtSearch').val(keyWord);
         }
     })
 }
@@ -93,6 +91,9 @@ function ResetForm_TuNgu() {
     $('#txtNoiDungTu').val('');
     $('textarea').each(function () {
         var name = $(this).attr('name');
+        var id = $(this).attr('id');
+        var editor = CKEDITOR.instances[id];
+    if (editor) { editor.destroy(true); }
         CKEDITOR.replace(name);
     });
     CKEDITOR.instances["txtNghiaCuaTu"].setData('');
@@ -262,8 +263,9 @@ function ThemTuNgu_MangTam() {
     }
     if (valid) {
         //Kiểm tra xem từ ngữ đó đã xuất hiện trong từ điển hay chưa. Nếu có rồi thì cập nhật, chưa có sẽ thêm vào mảng
-        var existCheck = lstTuNgu.filter(k => k.NoiDungTu.toLowerCase() == noiDungTu.toLowerCase())[0];
+        var existCheck = lstTuNgu.filter(k => (k.ID != 0 && k.ID == idTuNgu) || k.NoiDungTu.toLowerCase() == noiDungTu.toLowerCase())[0];
         if (existCheck != undefined) {
+            existCheck.NoiDungTu = noiDungTu;
             existCheck.NghiaCuaTu = nghiaCuaTu;
             existCheck.TuDongNghia = tuDongNghia;
             existCheck.TuTraiNghia = tuTraiNghia;

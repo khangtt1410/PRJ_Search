@@ -51,8 +51,6 @@ function Search() {
         },
         success: function (res) {
             $('#tblNgonNgu').html(res);
-            //Lấy thông tin tại các ô tìm kiếm
-            $('#txtSearch').val(ten);
         }
     })
 }

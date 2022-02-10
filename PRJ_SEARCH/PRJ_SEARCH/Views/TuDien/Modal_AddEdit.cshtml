@@ -18,12 +18,12 @@
                 <div class="col-md-12 no-padding" style="border:1px dashed #f55454; padding:20px; margin-bottom:20px">
                     <div class="col-md-12 form-group no-padding">
                         <div class="col-md-3">
-                            <label>Mã từ điển</label>
+                            <label>Mã từ điển</label><b class="price_ver"> *</b>
                             <input type="text" class="form-control" id="txtMaTuDien" placeholder="Nhập mã từ điển" />
                             <span id="errMaTuDien" class="price_ver"></span>
                         </div>
                         <div class="col-md-9">
-                            <label>Tên từ điển</label>
+                            <label>Tên từ điển</label><b class="price_ver"> *</b>
                             <input type="text" class="form-control" id="txtTenTuDien" placeholder="Nhập tên từ điển" />
                             <span id="errTenTuDien" class="price_ver"></span>
                         </div>
@@ -34,14 +34,14 @@
                             <input type="text" class="form-control" id="txtTacGia" placeholder="Nhập tác giả" />
                         </div>
                         <div class="col-md-4">
-                            <label>Dịch từ ngôn ngữ</label>
+                            <label>Dịch từ ngôn ngữ</label><b class="price_ver"> *</b>
                             <select class="form-control" id="dllTuNgonNgu">
                                 <option value="0">Chọn ngôn ngữ</option>
                             </select>
                             <span id="errNgonNguNguon" class="price_ver"></span>
                         </div>
                         <div class="col-md-4">
-                            <label>sang ngôn ngữ</label>
+                            <label>sang ngôn ngữ</label><b class="price_ver"> *</b>
                             <select class="form-control" id="dllDenNgonNgu">
                                 <option value="0">Chọn ngôn ngữ</option>
                             </select>
@@ -50,27 +50,25 @@
                     </div>
                     <div class="col-md-12 no-padding form-group">
                         <button class="btn btn-primary" type="button" id="btnLuuThayDoi" onclick="Save()">
-                            Lưu từ điển
+                           <i class="ti-save"> </i> Lưu từ điển
                         </button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
-                            Hủy bỏ
+                           <i class="ti-close"> </i> Hủy bỏ
                         </button>
                     </div>
                 </div>
                 <h5>Thêm từ ngữ vào từ điển</h5>
-                <div class="col-md-12 no-padding" style="border:1px dashed #f55454; padding:20px; display:inline-flex">
-                    <div class="col-md-7 no-padding">
+                <i style="color:#f55454"> <i class="ti-comment-alt"> </i> Lưu ý: Bạn có thể thực hiện thêm các từ ngữ vào trong từ điển bằng cách điền thông tin từ ngữ vào form bên dưới, hoặc sử dụng tính năng thêm từ ngữ tại màn hình danh sách từ điển</i>
+                <div class="col-md-12 no-padding" style="border:1px dashed #f55454; padding:20px; margin-top:10px">
+                    <div class="col-md-12 no-padding">
                         <input type="hidden" id="txtIDTuNgu" value="0" />
                         <div class="col-md-12">
-                            <label>File </label>
-                        </div>
-                        <div class="col-md-12">
-                            <label>Nội dung từ</label>
+                            <label>Nội dung từ</label><b class="price_ver"> *</b>
                             <input type="text" class="form-control" id="txtNoiDungTu" placeholder="Nhập nội dung từ" />
                             <span id="errNoiDungTu" class="price_ver"></span>
                         </div>
                         <div class="col-md-12">
-                            <label>Nghĩa của từ</label>
+                            <label>Nghĩa của từ</label><b class="price_ver"> *</b>
                             <textarea type="text" rows="3" class="form-control" name="ckeditor_nghiacuatu" id="txtNghiaCuaTu"></textarea>
                             <span id="errNghiaCuaTu" class="price_ver"></span>
                         </div>
@@ -102,12 +100,12 @@
                                 <textarea type="text" rows="3" class="form-control" name="ckeditor_tulienquan" id="txtTuLienQuan"></textarea>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <button class="btn btn-secondary" id="btnLamMoi">Làm mới</button>
-                            <button class="btn btn-primary" id="btnThemVaoTuDien" onclick="ThemTuNgu_MangTam()">Thêm vào từ điển</button>
+                        <div class="col-md-12 no-padding" style="padding: 20px;">
+                            <button class="btn btn-secondary" id="btnLamMoi"><i class="ti-reload"></i> Làm mới</button>
+                            <button class="btn btn-primary" id="btnThemVaoTuDien" onclick="ThemTuNgu_MangTam()"><i class="ti-pencil-alt"></i> Thêm vào từ điển</button>
                         </div>
                     </div>
-                    <div class="col-md-5 no-padding" style="background: #706c6c; height: 1972px; overflow: auto">
+                    <div class="col-md-12 no-padding" style="background: #706c6c; height: 500px; overflow: auto; padding: 20px;">
                         <table class="table table-hover table-bordered" style="background:#fff">
                             <thead>
                                 <tr>

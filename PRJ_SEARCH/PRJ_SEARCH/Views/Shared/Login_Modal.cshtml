@@ -6,23 +6,21 @@
             <div class="modal-body">
                 <h4 class="modal-header-title">Đăng Nhập</h4>
                 <div class="login-form">
-                    <form>
                         <div class="form-group">
                             <label>Tên đăng nhập</label>
-                            <input type="text" class="form-control" placeholder="Tên đăng nhập" id="txtTenDangNhap" onkeyup="ResetError()">
+                            <input type="text" class="form-control input_login" placeholder="Tên đăng nhập" id="txtTenDangNhap" onkeydown="ResetError()" onkeypress="OnKeyPress_Enter(event)">
                         </div>
 
                         <div class="form-group">
                             <label>Mật khẩu</label>
-                            <input type="password" class="form-control" placeholder="*******" id="txtMatKhau" onkeyup="ResetError()">
+                            <input type="password" class="form-control input_login" placeholder="*******" id="txtMatKhau" onkeydown="ResetError()" onkeypress="OnKeyPress_Enter(event)">
                         </div>
                         <div class="form-group" id="errDangNhap" style="display:none">
                             <span class="price_ver"></span>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-md full-width pop-login" onclick="DangNhap()">Đăng nhập</button>
+                            <button class="btn btn-md full-width pop-login" onclick="DangNhap()">Đăng nhập</button>
                         </div>
-                    </form>
                 </div>
 
                 <div class="social-login mb-3">
@@ -36,7 +34,7 @@
                 </div>
 
                 <div class="text-center">
-                    <p class="mt-2">Bạn đã có tài khoản đăng nhập? <a href="register.html" class="link">Đăng nhập ngay</a></p>
+                    <p class="mt-2">Bạn đã có tài khoản đăng nhập? <a href="register.html" class="link">Đăng ký ngay</a></p>
                 </div>
             </div>
         </div>

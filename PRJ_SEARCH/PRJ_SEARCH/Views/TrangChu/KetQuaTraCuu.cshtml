@@ -22,18 +22,20 @@
                                 <div class="container">
                                     <div class="row align-items-center">
                                         <div class="col-lg-4 col-md-5">
-                                            <audio controls>
-                                                <source id="audio_@item.ID" src="@item.PathVoice" type="audio/mpeg">
+                                            <audio id="audio_@item.ID">
+                                                <source id="src_@item.ID" src="@item.PathVoice" type="audio/mpeg">
                                             </audio>
                                             <div class="property_video">
                                                 <div class="thumb">
-                                                    @*<audio src="" id="audio_@item.ID"  type="audio/ogg"></audio>*@
-                                                    <img class="pro_img img-fluid w100" src="~/Content/img/course-1.jpg" alt="7.jpg">
+                                                    @*<audio src="~/Content/sound/hello its me.mp3" controls id="audio_@item.ID"  type="audio/ogg"></audio>*@
+                                                    <img style="object-fit: fill!important" class="pro_img img-fluid w100" src="~/Content/img/radio.png" alt="radio.png">
                                                     <div class="overlay_icon" onclick="SpeakWord(@item.ID)">
                                                         <div class="bb-video-box">
                                                             <div class="bb-video-box-inner">
                                                                 <div class="bb-video-box-innerup">
-                                                                    <a href="lstDetail" data-toggle="modal" data-target="#popup-video" class="theme-cl"><i class="ti-control-play"></i></a>
+                                                                    <a href="lstDetail" data-toggle="modal" data-target="#popup-video" class="theme-cl">
+                                                                    <i id="iconplay_@item.ID" class="ti-control-play"></i>
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -52,8 +54,8 @@
                                                 <div class="ed_header_caption">
                                                     <h2 class="ed_title" id="txtNoiDungTu_@item.ID">@item.NoiDungTu</h2>
                                                     <ul>
-                                                        <li><i class="ti-calendar"></i>@item.NgayTao.Value.ToString("dd/MM/yyyy")</li>
-                                                        <li><i class="ti-control-forward"></i>@item.TenNguoiTao</li>
+                                                        <li hidden><i class="ti-calendar"></i>@item.NgayTao.Value.ToString("dd/MM/yyyy")</li>
+                                                        <li hidden><i class="ti-control-forward"></i>@item.TenNguoiTao</li>
                                                         <li><i class="ti-user"></i>502 lượt xem</li>
                                                     </ul>
                                                 </div>
@@ -321,6 +323,4 @@
         </div>
     </div>
 </div>
-
-
 

@@ -46,12 +46,12 @@
     <table class="table table-hover table-bordered" id="tblTuDien">
         <thead>
             <tr>
-                <th scope="col" style="text-align:center">STT</th>
-                <th scope="col" >Mã từ điển</th>
-                <th scope="col">Tên từ điển</th>
-                <th scope="col" style="text-align:center">Ngôn ngữ nguồn</th>
-                <th scope="col">Ngôn ngữ đích</th>
-                <th scope="col" style="text-align:center">Chức năng</th>
+                <th scope="col" class="text-center">STT</th>
+                <th scope="col" class="text-center">Mã từ điển</th>
+                <th scope="col" class="text-center">Tên từ điển</th>
+                <th scope="col" class="text-center">Ngôn ngữ nguồn</th>
+                <th scope="col" class="text-center">Ngôn ngữ đích</th>
+                <th scope="col" class="text-center">Chức năng</th>
             </tr>
         </thead>
         <tbody>
@@ -60,19 +60,22 @@
             {
                 i++;
             <tr>
-                <td style="text-align:center">@i</td>
-                <th>@item.ID<span class="tb_date">@item.MaTuDien</span></th>
+                <td class="text-center">@i</td>
+                <th>@item.MaTuDien<span class="tb_date">@item.TacGia</span></th>
                 <td>@item.TenTuDien</td>
-                <td style="text-align:center">@item.NgonNguNguon</td>
-                <td>@item.NgonNguDich</td>
-                <td style="text-align:center">
+                <td class="text-center">@item.NgonNguNguon</td>
+                <td class="text-center">@item.NgonNguDich</td>
+                <td class="text-center">
                     <a class="btn btn-action" style="padding:6px 6px" title="Sửa" onclick="ShowModalAddEdit(@item.ID)">
                         <span class="fa fa-edit"></span>
                     </a>
                     <a class="btn btn-action" style="padding:4px 4px" title="Xóa" onclick="ShowModal_XacNhan(@item.ID)">
                         <span class="fa fa-trash"></span>
                     </a>
-                    
+                    <a class="btn btn-action" style="padding:4px 4px" title="Thêm từ ngữ vào từ điển" onclick="ShowModal_ThemTuNgu(@item.ID)">
+                        <span class="fa fa-address-book"></span>
+                    </a>
+
                 </td>
             </tr>
             }

@@ -31,23 +31,28 @@ function TraCuu() {
 }
 //Hàm đọc từ ngữ
 function SpeakWord(id) {
-    //$('#audio_' + id)[0].load();
-    //$('#audio_' + id)[0].play();
-    var word = $('#txtNoiDungTu_' + id).html();
-    $.ajax({
-        url: '/TrangChu/TTS',
-        dataType: 'JSON',
-        type: 'POST',
-        data: { word: word },
-        success: function (res)
-        {
-            $('#audio_' + id).attr('src', res.pathSave);
-            var audio = {};
-            audio["walk"] = new Audio();
-            audio["walk"].src = res.pathSave;
-            audio["walk"].addEventListener('load', function () {
-                audio["walk"].play();
-            });
-        }
-    })
+    $('#audio_' + id)[0].load();
+    $('#audio_' + id)[0].play();
+    var time = $('#audio_' + id)[0].duration;
+    $('#iconplay_' + id).removeClass('ti-control-play');
+    $('#iconplay_' + id).addClass('ti-control-pause');
+
+    var f_duration = 0; 
+    document.getElementById('audio_' + id).addEventListener('canplaythrough', function (e) {
+        f_duration = Math.round(e.currentTarget.duration);
+        setTimeout(() => {
+            $('#iconplay_' + id).removeClass('ti-control-pause');
+            $('#iconplay_' + id).addClass('ti-control-play');
+        }, f_duration + 600)
+    });
 }
+//Hàm xử lý nhấn nút enter
+function OnKeyPress_Enter_Search(e) {
+    if (e.keyCode == '13') {
+        var keyWord = $('#txtKeyWord').val();
+        if (keyWord != "") {
+            TraCuu();
+        }
+    }
+}
+
