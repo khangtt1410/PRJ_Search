@@ -10,9 +10,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Google.API.Search;
-using Google.Apis.Auth.OAuth2;
-using Google.Cloud.TextToSpeech.V1;
 
 namespace PRJ_SEARCH.Controllers
 {
@@ -28,7 +25,7 @@ namespace PRJ_SEARCH.Controllers
             ViewBag.lstNgonNgu = lstNgonNgu;
             return View();
         }
-        public ActionResult TraCuu(string keyWord = "", int tuNgonNgu = 0, int denNgonNgu = 0)
+        public ActionResult KetQuaTraCuu(string keyWord = "", int tuNgonNgu = 0, int denNgonNgu = 0)
         {
             //Lấy tất cả các từ có trong bảng từ ngữ phù hợp điều kiện
             string sqlQuyery = "Select tn.ID, tn.NgayTao, tn.NoiDungTu, tn.NghiaCuaTu, tn.TuDongNghia, tn.TuTraiNghia, tn.ThanhNgu, tn.ViDu, " +

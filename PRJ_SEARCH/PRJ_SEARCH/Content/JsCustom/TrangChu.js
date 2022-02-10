@@ -12,7 +12,7 @@ function TraCuu() {
     //Xử lý sự kiện để hiện thông tin
 
     $.ajax({
-        url: '/TrangChu/TraCuu',
+        url: '/TrangChu/KetQuaTraCuu',
         data: {
             keyWord: keyWord,
             tuNgonNgu: tuNgonNgu,

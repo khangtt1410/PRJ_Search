@@ -22,7 +22,6 @@
                                 <div class="container">
                                     <div class="row align-items-center">
                                         <div class="col-lg-4 col-md-5">
-
                                             <audio controls>
                                                 <source id="audio_@item.ID" src="@item.PathVoice" type="audio/mpeg">
                                             </audio>
@@ -317,10 +316,11 @@
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <div id="lstDetailWeb">
-               @Html.Raw(Model.Doc_Online)
+                @Html.Raw(Model.Doc_Online)
             </div>
         </div>
     </div>
 </div>
+
 
 

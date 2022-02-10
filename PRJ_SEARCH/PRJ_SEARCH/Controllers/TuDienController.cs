@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Speech.Synthesis;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,7 +16,7 @@ namespace PRJ_SEARCH.Controllers
         // GET: TuDien
         public ActionResult Index()
         {
-                return View();
+            return View();
         }
         /// <summary>
         /// Lấy danh sách từ điển
@@ -39,7 +40,7 @@ namespace PRJ_SEARCH.Controllers
                 $"or (ngonngunguon.TenNgonNgu collate Latin1_General_CI_AI like N'%{keyword}%' or '{keyword}' = '') " +
                 $"or (ngonngudich.TenNgonNgu collate Latin1_General_CI_AI like N'%{keyword}%' or '{keyword}' = '')) ";
 
-            lstData = db.ExecuteQuery<TuDienEntities.TuDienView>(sqlQuery).OrderByDescending(k=>k.ID).ThenBy(k=>k.TenTuDien).ToList();
+            lstData = db.ExecuteQuery<TuDienEntities.TuDienView>(sqlQuery).OrderByDescending(k => k.ID).ThenBy(k => k.TenTuDien).ToList();
 
             totalRecord = lstData.Count();
             lstData = lstData.Skip((page - 1) * pageSize).Take(pageSize).ToList();
@@ -106,7 +107,7 @@ namespace PRJ_SEARCH.Controllers
             bool status = true;
             string mess = "Thêm mới từ điển thành công";
 
-            int ID = int.Parse(c["ID"] == "" ? "0": c["ID"]);
+            int ID = int.Parse(c["ID"] == "" ? "0" : c["ID"]);
             int userId = int.Parse(Session["IDNguoiDung"].ToString());
 
             //Kiểm tra mã trùng
@@ -127,7 +128,7 @@ namespace PRJ_SEARCH.Controllers
                 tudien.TacGia = c["TacGia"];
                 tudien.NguoiTao = userId;
                 tudien.NgayTao = DateTime.Now;
-                tudien.IDNgonNguDich = int.Parse(c["IDNgonNguDich"] == null ? "0": c["IDNgonNguDich"]);
+                tudien.IDNgonNguDich = int.Parse(c["IDNgonNguDich"] == null ? "0" : c["IDNgonNguDich"]);
                 tudien.IDNgonNguNguon = int.Parse(c["IDNgonNguNguon"] == null ? "0" : c["IDNgonNguNguon"]);
                 db.tb_TuDiens.InsertOnSubmit(tudien);
                 db.SubmitChanges();
@@ -136,7 +137,9 @@ namespace PRJ_SEARCH.Controllers
                 List<tb_TuNgu> lstTuNgu = JsonConvert.DeserializeObject<List<tb_TuNgu>>(c["lstTuNgu"]);
                 foreach (var item in lstTuNgu)
                 {
-                    string pathVoice = CreateVoice(item.NoiDungTu);
+                    var task = Task.Run(async () => await CreateVoice(item.NoiDungTu));
+                    string pathVoice = task.Result;
+
                     tb_TuNgu objNew = new tb_TuNgu
                     {
                         CumDongTu = item.CumDongTu,
@@ -188,7 +191,9 @@ namespace PRJ_SEARCH.Controllers
                 //Duyệt danh sách từ ngữ mới
                 foreach (var item in lstNew)
                 {
-                    string pathVoice = CreateVoice(item.NoiDungTu);
+                    var task = Task.Run(async () => await CreateVoice(item.NoiDungTu));
+                    string pathVoice = task.Result;
+
                     var existObj = lstOld.FirstOrDefault(k => k.ID == item.ID);
                     if (existObj != null)
                     {
@@ -238,22 +243,26 @@ namespace PRJ_SEARCH.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        public string CreateVoice(string word)
+        public async Task<string> CreateVoice(string word)
         {
-            using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer())
+            Task<string> task = Task.Run(() =>
             {
-                using (MemoryStream stream = new MemoryStream())
+                using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer())
                 {
-                    string pathSave = "~/Content/sound/";
-                    speechSynthesizer.SetOutputToWaveStream(stream);
-                    speechSynthesizer.Speak(word);
-                    var bytes = stream.GetBuffer();
-                    string speechFile = Server.MapPath(Path.Combine(pathSave, word + ".mp3"));
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        string pathSave = "~/Content/sound/";
+                        speechSynthesizer.SetOutputToWaveStream(stream);
+                        speechSynthesizer.Speak(word);
+                        var bytes = stream.GetBuffer();
+                        string speechFile = Server.MapPath(Path.Combine(pathSave, word + ".mp3"));
 
-                    System.IO.File.WriteAllBytes(speechFile, bytes);
-                    return pathSave = Path.Combine(pathSave, word + ".mp3");
+                        System.IO.File.WriteAllBytes(speechFile, bytes);
+                        return Path.Combine(pathSave, word + ".mp3");
+                    }
                 }
-            }
+            });
+            return await task;
         }
     }
 }
