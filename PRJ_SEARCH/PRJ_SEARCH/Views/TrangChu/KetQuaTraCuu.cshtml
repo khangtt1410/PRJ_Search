@@ -1,12 +1,16 @@
 ﻿@model TuNguEntities.lstData
-<h4>Kết quả</h4>
+
 <div class="custom-tab customize-tab tabs_creative">
-    <ul class="nav nav-tabs pb-2 b-0" id="myTab" role="tablist">
+    <ul class="nav nav-tabs pb-2 b-0" id="myTab" role="tablist" style="display: block; position: absolute; top: 20px; left: 37px;">
         <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Trong hệ thống</a>
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+            <i class="fab fa-codiepie"></i> Trong hệ thống
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Website Online</a>
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+                <i class="fab fa-edge"></i> Website Online
+            </a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -96,18 +100,18 @@
 
                                             <div class="edu_wraper">
                                                 <h4 class="edu_title">Chi tiết</h4>
-                                                <div id="accordionExample" class="accordion shadow circullum">
+                                                <div id="accordionExample_@item.ID" class="accordion shadow circullum">
 
                                                     <!-- Từ đồng nghĩa -->
                                                     <div class="card">
-                                                        <div id="headingOne" class="card-header bg-white shadow-sm border-0">
+                                                        <div id="headingOne_@item.ID" class="card-header bg-white shadow-sm border-0">
                                                             <h6 class="mb-0 accordion_title">
-                                                                <a href="#" data-toggle="collapse" data-target="#collapseOne"
-                                                                   aria-expanded="true" aria-controls="collapseOne"
+                                                                <a href="#" data-toggle="collapse" data-target="#collapseOne_@item.ID"
+                                                                   aria-expanded="true" aria-controls="collapseOne_@item.ID"
                                                                    class="d-block position-relative text-dark collapsible-link py-2">- Từ điển từ đồng nghĩa: Các từ đồng nghĩa và ví dụ</a>
                                                             </h6>
                                                         </div>
-                                                        <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
+                                                        <div id="collapseOne_@item.ID" aria-labelledby="headingOne_@item.ID" data-parent="#accordionExample_@item.ID" class="collapse show">
                                                             <div class="card-body pl-3 pr-3">
                                                                 <h4 class="edu_title">Từ đồng nghĩa</h4>
                                                                 <span>@Html.Raw(item.TuDongNghia)</span>
@@ -117,14 +121,14 @@
 
                                                     <!-- Từ trái nghĩa -->
                                                     <div class="card">
-                                                        <div id="headingTwo" class="card-header bg-white shadow-sm border-0">
+                                                        <div id="headingTwo_@item.ID" class="card-header bg-white shadow-sm border-0">
                                                             <h6 class="mb-0 accordion_title">
-                                                                <a href="#" data-toggle="collapse" data-target="#collapseTwo"
-                                                                   aria-expanded="false" aria-controls="collapseTwo"
+                                                                <a href="#" data-toggle="collapse" data-target="#collapseTwo_@item.ID"
+                                                                   aria-expanded="false" aria-controls="collapseTwo_@item.ID"
                                                                    class="d-block position-relative collapsed text-dark collapsible-link py-2">- Từ điển từ trái nghĩa: Các từ trái nghĩa và ví dụ</a>
                                                             </h6>
                                                         </div>
-                                                        <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
+                                                        <div id="collapseTwo_@item.ID" aria-labelledby="headingTwo_@item.ID" data-parent="#accordionExample_@item.ID" class="collapse">
                                                             <div class="card-body pl-3 pr-3">
                                                                 <h4 class="edu_title">Từ trái nghĩa</h4>
                                                                 <span>@Html.Raw(item.TuTraiNghia)</span>
@@ -134,14 +138,14 @@
 
                                                     <!-- Các thành ngữ -->
                                                     <div class="card">
-                                                        <div id="headingThree" class="card-header bg-white shadow-sm border-0">
+                                                        <div id="headingThree_@item.ID" class="card-header bg-white shadow-sm border-0">
                                                             <h6 class="mb-0 accordion_title">
-                                                                <a href="#" data-toggle="collapse" data-target="#collapseThree"
-                                                                   aria-expanded="false" aria-controls="collapseThree"
+                                                                <a href="#" data-toggle="collapse" data-target="#collapseThree_@item.ID"
+                                                                   aria-expanded="false" aria-controls="collapseThree_@item.ID"
                                                                    class="d-block position-relative collapsed text-dark collapsible-link py-2">- Các thành ngữ</a>
                                                             </h6>
                                                         </div>
-                                                        <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample" class="collapse">
+                                                        <div id="collapseThree_@item.ID" aria-labelledby="headingThree_@item.ID" data-parent="#accordionExample_@item.ID" class="collapse">
                                                             <div class="card-body pl-3 pr-3">
                                                                 <h4 class="edu_title">Thành ngữ</h4>
                                                                 <span>@Html.Raw(item.ThanhNgu)</span>
@@ -151,14 +155,14 @@
 
                                                     <!-- Cụm động từ -->
                                                     <div class="card">
-                                                        <div id="headingThree" class="card-header bg-white shadow-sm border-0">
+                                                        <div id="headingFour_@item.ID" class="card-header bg-white shadow-sm border-0">
                                                             <h6 class="mb-0 accordion_title">
-                                                                <a href="#" data-toggle="collapse" data-target="#collapseFour"
-                                                                   aria-expanded="false" aria-controls="collapseFour"
+                                                                <a href="#" data-toggle="collapse" data-target="#collapseFour_@item.ID"
+                                                                   aria-expanded="false" aria-controls="collapseFour_@item.ID"
                                                                    class="d-block position-relative collapsed text-dark collapsible-link py-2">- Cụm động từ</a>
                                                             </h6>
                                                         </div>
-                                                        <div id="collapseFour" aria-labelledby="headingFour" data-parent="#accordionExample" class="collapse">
+                                                        <div id="collapseFour_@item.ID" aria-labelledby="headingFour_@item.ID" data-parent="#accordionExample_@item.ID" class="collapse">
                                                             <div class="card-body pl-3 pr-3">
                                                                 <h4 class="edu_title">Cụm động từ</h4>
                                                                 <span>@Html.Raw(item.CumDongTu)</span>
@@ -233,7 +237,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="ed_view_features pl-4">
-                                                    <span>Bao gồm:</span>
                                                     <span>@Html.Raw(item.TuLienQuan)</span>
                                                 </div>
                                             </div>
@@ -317,7 +320,7 @@
             </div>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div id="lstDetailWeb">
+            <div id="lstDetailWeb" style="min-height:200px">
                 @Html.Raw(Model.Doc_Online)
             </div>
         </div>

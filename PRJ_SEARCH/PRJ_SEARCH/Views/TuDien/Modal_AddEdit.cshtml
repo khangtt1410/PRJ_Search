@@ -14,9 +14,9 @@
             </div>
             <div class="modal-body">
                 <input id="id" name="id" type="hidden" value="0" />
-                <h5>Thông tin từ điển</h5>
+                <h5 class="inforTuDien">Thông tin từ điển</h5>
                 <div class="col-md-12 no-padding" style="border:1px dashed #f55454; padding:20px; margin-bottom:20px">
-                    <div class="col-md-12 form-group no-padding">
+                    <div class="col-md-12 form-group no-padding inforTuDien">
                         <div class="col-md-3">
                             <label>Mã từ điển</label><b class="price_ver"> *</b>
                             <input type="text" class="form-control" id="txtMaTuDien" placeholder="Nhập mã từ điển" />
@@ -28,7 +28,7 @@
                             <span id="errTenTuDien" class="price_ver"></span>
                         </div>
                     </div>
-                    <div class="col-md-12 no-padding form-group">
+                    <div class="col-md-12 no-padding form-group inforTuDien">
                         <div class="col-md-4">
                             <label>Tác giả</label>
                             <input type="text" class="form-control" id="txtTacGia" placeholder="Nhập tác giả" />
@@ -57,13 +57,13 @@
                         </button>
                     </div>
                 </div>
-                <h5>Thêm từ ngữ vào từ điển</h5>
-                <i style="color:#f55454"> <i class="ti-comment-alt"> </i> Lưu ý: Bạn có thể thực hiện thêm các từ ngữ vào trong từ điển bằng cách điền thông tin từ ngữ vào form bên dưới, hoặc sử dụng tính năng thêm từ ngữ tại màn hình danh sách từ điển</i>
+                <h5 class="inforTuDien">Thêm từ ngữ vào từ điển</h5>
+                <i style="color:#f55454" class="inforTuDien"> <i class="ti-comment-alt"> </i> Lưu ý: Bạn có thể thực hiện thêm các từ ngữ vào trong từ điển bằng cách điền thông tin từ ngữ vào form bên dưới, hoặc sử dụng tính năng thêm từ ngữ tại màn hình danh sách từ điển</i>
                 <div class="col-md-12 no-padding" style="border:1px dashed #f55454; padding:20px; margin-top:10px">
                     <div class="col-md-12 no-padding">
                         <input type="hidden" id="txtIDTuNgu" value="0" />
                         <div class="col-md-12">
-                            <label>Nội dung từ</label><b class="price_ver"> *</b>
+                            <label>Nội dung từ <i>(Từ ngữ gốc theo ngôn ngữ nguồn)</i></label><b class="price_ver"> *</b>
                             <input type="text" class="form-control" id="txtNoiDungTu" placeholder="Nhập nội dung từ" />
                             <span id="errNoiDungTu" class="price_ver"></span>
                         </div>

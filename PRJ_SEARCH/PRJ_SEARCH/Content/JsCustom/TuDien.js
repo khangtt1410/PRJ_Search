@@ -108,6 +108,7 @@ function ResetForm_TuNgu() {
 //Hàm xử lý gọi form thêm mới/ sửa đổi
 function ShowModalAddEdit(id) {
     ResetForm();
+    $('.inforTuDien').show();
     if (id == null || id == 0) {
         $('#TieuDe').html("Thêm mới từ điển");
     }
@@ -316,4 +317,52 @@ function XoaBoTuNgu(noiDungTu) {
     var index = lstTuNgu.indexOf(existCheck);
     lstTuNgu.splice(index, 1);
     ResetTableTuNgu();
+}
+//Hàm show form thêm từ ngữ
+function ShowModal_ThemTuNgu(id) {
+    ResetForm();
+    $.ajax({
+        url: "/TuDien/GetData",
+        data: {
+            id: id
+        },
+        type: 'GET',
+        dataType: 'JSON',
+        success: function (result) {
+            if (result.status == true) {
+                //Load danh sách ngôn ngữ
+                var htmlNgonNgu = '';
+                $.each(result.lstNgonNgu, function (i, item) {
+                    htmlNgonNgu += '<option value="' + item.ID + '">' + item.TenNgonNgu + '</option>'
+                });
+                $('#dllTuNgonNgu').append(htmlNgonNgu);
+                $('#dllDenNgonNgu').append(htmlNgonNgu);
+                //Load chi tiết thông tin từ điển
+                $('#id').val(id);
+                $('#txtMaTuDien').val(result.data.MaTuDien);
+                $('#txtTenTuDien').val(result.data.TenTuDien);
+                $('#txtTacGia').val(result.data.TacGia);
+                $('#dllTuNgonNgu option[value="' + result.data.IDNgonNguNguon + '"]').prop('selected', true);
+                $('#dllDenNgonNgu option[value="' + result.data.IDNgonNguDich + '"]').prop('selected', true);
+                $('#TieuDe').html('Thêm từ ngữ vào từ điển <b style="color:#f55454; font-family: tahoma">' + result.data.TenTuDien.toUpperCase() + '</b>');
+                $('.inforTuDien').hide();
+                //Load danh sách từ ngữ vào bảng tạm
+                $.each(result.lstTuNgu, function (i, item) {
+                    var objTuNgu = {};
+                    objTuNgu.ID = item.ID;
+                    objTuNgu.NoiDungTu = item.NoiDungTu;
+                    objTuNgu.NghiaCuaTu = item.NghiaCuaTu;
+                    objTuNgu.TuDongNghia = item.TuDongNghia;
+                    objTuNgu.TuTraiNghia = item.TuTraiNghia;
+                    objTuNgu.ViDu = item.ViDu;
+                    objTuNgu.ThanhNgu = item.ThanhNgu;
+                    objTuNgu.CumDongTu = item.CumDongTu;
+                    objTuNgu.TuLienQuan = item.TuLienQuan;
+                    lstTuNgu.push(objTuNgu);
+                })
+                ResetTableTuNgu();
+            }
+        }
+    });
+    $("#mdlTuDien_AddEdit").modal("show");
 }
