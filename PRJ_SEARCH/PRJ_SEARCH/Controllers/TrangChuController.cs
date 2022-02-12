@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
@@ -47,88 +48,59 @@ namespace PRJ_SEARCH.Controllers
             ViewBag.lstNgonNgu = lstNgonNgu;
 
             //Tìm kiếm trên website
-            //string uriString = "http://www.google.com/search";
+            string apiKey = "AIzaSyCuU5tGTEMc6YJIT8owSgsmDiiOFIF_sHI";
+            string cx = "017576662512468239146";
+            string query = keyWord;
+            string url = "https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx="+cx+":omuauf_lfve&q=" + keyWord;
+            var request = WebRequest.Create(url);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string resString = reader.ReadToEnd();
+            dynamic jsonData = JsonConvert.DeserializeObject(resString);
 
-            //WebClient webClient = new WebClient();
-
-            //NameValueCollection nameValueCollection = new NameValueCollection();
-            //nameValueCollection.Add("q", keyWord);
-
-            //webClient.QueryString.Add(nameValueCollection);
-            //var res = webClient.DownloadString(uriString);
-            //WebClient Web = new WebClient();
-            //string Source = Web.DownloadString("https://www.google.com/search?client=" + keyWord);
-            //Regex regex = new Regex(@"^http(s) ?://([\w-]+.)+[\w-]+(/[\w%&=])?$");
-            //MatchCollection Collection = regex.Matches(res);
-            List<string> Urls = new List<string>();
-            //foreach (Match match in Collection)
-            //{
-            //    Urls.Add(match.ToString());
-            //}
-
-            //string raw = "http://www.google.com/search?num=39&q={0}&btnG=Search";
-            //string search = string.Format(raw, HttpUtility.UrlEncode(keyWord));
-
-           //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(search);
-            //using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            //{
-            //    using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.ASCII))
-            //    {
-            //        string html = reader.ReadToEnd();
-            //        string lookup = "(<a href=\")(\\w+[a-zA-Z0-9.-?=/]*)\" class=l";
-            //        MatchCollection matches = Regex.Matches(html, lookup);
-
-            //        for (int i = 0; i < matches.Count; i++)
-            //        {
-            //            string match = matches[i].Groups[2].Value;
-            //            Urls.Add(match.ToString());
-            //        }
-            //    }
-            //}
-           // GwebSearchClient gweb = new GwebSearchClient("http://ubound.hipchat.com");
-           // GwebSearchClient client = new GwebSearchClient("www.google.com");
-           // IList<IWebResult> results = client.Search(keyWord, 10); //max is 64
-           //// var results = gweb.Search(keyWord, 32);
-
-           // try
-           // {
-           //     if (results.Count > 0)
-           //     {
-           //         foreach (var result in results)
-           //         {
-           //             var ew = result.Url;
-           //         }
-           //     }
-           // }
-           // catch
-           // {
-           //     string mes = "Error in search!";
-           // }
-
-
-           // var gclient = new GwebSearchClient("www.google.com");
-           // var searchResult = gclient.Search(keyWord, 1000);
-
-           // if (searchResult != null)
-           // {
-           //     var ress =  searchResult.Select(result => result.Url).ToList();
-           // }
-
-            //List<string> res = new List<string>();
-            //var client = new GwebSearchClient("http://www.google.com");
-            //var results = client.Search("google api for .NET", 100);
-            //foreach (var webResult in results)
-            //{
-            //    //Console.WriteLine("{0}, {1}, {2}", webResult.Title, webResult.Url, webResult.Content);
-            //    res.Add(webResult.ToString());
-            //}
+            List<ResponseGoogleAPI> lstData = new List<ResponseGoogleAPI>();
+            foreach(var item in jsonData.items)
+            {
+                lstData.Add(new ResponseGoogleAPI()
+                {
+                    Title = item.title,
+                    Link = item.link,
+                    Snippet = item.snippet
+                });
+            }
 
             TuNguEntities.lstData data = new TuNguEntities.lstData()
             {
                 lstDoc = lstTuNgu,
-                //Doc_Online = res
+                lstResponse = lstData
             };
             return PartialView(data);
+        }
+
+        public JsonResult Translate(string inputData, string toLanguage = "en", string fromLanguage = "vi")
+        {
+            var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl={fromLanguage}&tl={toLanguage}&dt=t&q={HttpUtility.UrlEncode(inputData)}";
+            var webClient = new WebClient
+            {
+                Encoding = System.Text.Encoding.UTF8
+            };
+            var result = webClient.DownloadString(url);
+            try
+            {
+                result = result.Substring(4, result.IndexOf("\"", 4, StringComparison.Ordinal) - 4);
+                return Json(new
+                {
+                    data = result
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    data = ex.Message
+                });
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model TuNguEntities.lstData
 
 <div class="custom-tab customize-tab tabs_creative">
-    <ul class="nav nav-tabs pb-2 b-0" id="myTab" role="tablist" style="display: block; position: absolute; top: 20px; left: 37px;">
+    <ul class="nav nav-tabs pb-2 b-0" id="myTab" role="tablist" style="display: block; position: absolute; top: 20px; left: 37px; z-index: 9999;">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
             <i class="fab fa-codiepie"></i> Trong hệ thống
@@ -320,8 +320,36 @@
             </div>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div id="lstDetailWeb" style="min-height:200px">
-                @Html.Raw(Model.Doc_Online)
+            <div id="lstDetailWeb" style="min-height: 200px; width: 70%; margin: 10px auto;">
+                <h5 style="float:right; margin-right:20px">Tìm thấy <span class="price_ver">@Model.lstResponse.Count()</span> kết quả phù hợp</h5>
+                @foreach (var item in Model.lstResponse)
+                {
+                    <!-- Cource Grid 1 -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="education_block_list_layout">
+
+                            <div class="education_block_thumb n-shadow">
+                                <a href="course-detail.html"><img src="~/Content/img/co-2.jpg" class="img-fluid" alt=""></a>
+                            </div>
+
+                            <div class="list_layout_ecucation_caption">
+
+                                <div class="education_block_body">
+                                    <h4 class="bl-title"><a href="@item.Link" target="_blank" style="color:#0cba6e">@item.Title</a></h4>
+                                    <div class="course_rate_system">
+                                        <div class="course_reviews_info">
+                                            <a style="color:#0094ff" href="@item.Link" target="_blank">@item.Link</a>
+                                        </div>
+                                    </div>
+                                    <div class="cources_price">
+                                        @item.Snippet
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
