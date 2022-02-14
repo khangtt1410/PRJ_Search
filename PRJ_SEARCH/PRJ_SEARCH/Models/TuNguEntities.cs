@@ -13,6 +13,7 @@ namespace PRJ_SEARCH
             /// abc xyz
             /// </summary>
             public List<TuNguView> lstDoc { get; set; }
+            public string data { get; set; }
             public List<ResponseGoogleAPI> lstResponse { get; set; }
             public CLSHelper.Models.PagingInfo PagingInfo { get; set; }
         }

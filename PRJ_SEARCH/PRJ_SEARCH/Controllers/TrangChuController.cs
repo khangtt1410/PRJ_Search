@@ -48,10 +48,13 @@ namespace PRJ_SEARCH.Controllers
             ViewBag.lstNgonNgu = lstNgonNgu;
 
             //Tìm kiếm trên website
+            // lấy api key từ link này https://developers.google.com/custom-search/v1/overview
             string apiKey = "AIzaSyCuU5tGTEMc6YJIT8owSgsmDiiOFIF_sHI";
-            string cx = "017576662512468239146";
+            //string cx = "017576662512468239146";
+            string cx = "b60a96b351223441f";
+
             string query = keyWord;
-            string url = "https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx="+cx+":omuauf_lfve&q=" + keyWord;
+            string url = "https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx=" + cx + "&q=" + keyWord;
             var request = WebRequest.Create(url);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             Stream dataStream = response.GetResponseStream();
@@ -60,7 +63,7 @@ namespace PRJ_SEARCH.Controllers
             dynamic jsonData = JsonConvert.DeserializeObject(resString);
 
             List<ResponseGoogleAPI> lstData = new List<ResponseGoogleAPI>();
-            foreach(var item in jsonData.items)
+            foreach (var item in jsonData.items)
             {
                 lstData.Add(new ResponseGoogleAPI()
                 {
@@ -73,7 +76,8 @@ namespace PRJ_SEARCH.Controllers
             TuNguEntities.lstData data = new TuNguEntities.lstData()
             {
                 lstDoc = lstTuNgu,
-                lstResponse = lstData
+                lstResponse = lstData,
+                data = resString
             };
             return PartialView(data);
         }
