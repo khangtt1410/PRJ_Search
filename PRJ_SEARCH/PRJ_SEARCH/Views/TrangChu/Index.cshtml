@@ -24,21 +24,21 @@
                                                     <div class="col-lg-6 col-md-6 col-sm-12 small-pad">
                                                         <div class="form-group" style="padding-left:10px">
                                                             <div class="input-with-icon">
-                                                                <select id="ddlTuNgonNgu" class="form-control" style="height:100%">
+                                                                <select id="ddlTuNgonNgu" class="form-control row" style="height:100%">
                                                                     <option value="">Dịch từ ngôn ngữ</option>
                                                                     @foreach (var itemLang in ViewBag.lstNgonNgu)
                                                                     {
                                                                         <option value="@itemLang.ID">@itemLang.TenNgonNgu</option>
                                                                     }
                                                                 </select>
-                                                                <img src="~/Content/img/pin.svg" class="search-icon" alt="" />
+                                                                <img src="~/Content/img/pin.svg" class="search-icon imgTuNgonNgu" alt="" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-12 small-pad" style="padding-left:10px">
                                                         <div class="form-group">
                                                             <div class="input-with-icon">
-                                                                <select id="ddlDenNgonNgu" class="form-control" style="height:100%">
+                                                                <select id="ddlDenNgonNgu" class="form-control row" style="height:100%">
                                                                     <option value="">Sang ngôn ngữ</option>
                                                                     @foreach (var itemLang in ViewBag.lstNgonNgu)
                                                                     {

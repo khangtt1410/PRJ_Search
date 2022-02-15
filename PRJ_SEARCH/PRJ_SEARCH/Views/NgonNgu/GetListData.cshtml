@@ -48,9 +48,9 @@
     <table class="table table-hover table-bordered" id="tblNgonNgu">
         <thead>
             <tr>
-                <th scope="col" style="text-align:center">STT</th>
+                <th scope="col" class="colHiden" style="text-align:center">STT</th>
                 <th scope="col">Tên ngôn ngữ</th>
-                <th scope="col">Trạng thái</th>
+                <th scope="col" class="colHiden">Trạng thái</th>
                 <th scope="col" style="text-align:center">Chức năng</th>
             </tr>
         </thead>
@@ -60,9 +60,9 @@
             {
                 i++;
                 <tr>
-                    <td style="text-align:center">@i</td>
+                    <td style="text-align:center" class="colHiden">@i</td>
                     <th>@item.TenNgonNgu</th>
-                    <td>Đang sử dụng</td>
+                    <td class="colHiden">Đang sử dụng</td>
                     <td style="text-align:center">
                         <a class="btn btn-action" style="padding:6px 6px" title="Sửa" onclick="ShowModalAddEdit(@item.ID)">
                             <span class="fa fa-edit"></span>

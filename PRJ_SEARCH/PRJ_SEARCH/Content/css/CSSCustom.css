@@ -1,0 +1,129 @@
+﻿#ddlTuNgonNgu {
+    width:90%
+
+}
+#ddlDenNgonNgu {
+    width: 85%
+}
+@media only screen and (min-width: 1024px) {
+    .nav-item span {
+        display: block !important;
+    }
+
+    ul.nav {
+        left: 37px !important
+    }
+
+    #lstDetailWeb h5 {
+        float: right !important
+    }
+
+    .cources_price {
+        display: block !important
+    }
+
+    .rating-bars {
+        display: block !important
+    }
+}
+
+@media(width:768px) {
+    .nav-menu.nav-menu-social > li.login_click a {
+        padding: 11px !important
+    }
+    .imgTuNgonNgu {
+        margin-left: 14px!important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .nav-item span {
+        display: none;
+    }
+
+    ul.nav {
+        left: 5px !important
+    }
+
+    #lstDetailWeb h5 {
+        float: none !important
+    }
+
+    .cources_price {
+        display: block !important
+    }
+
+    .rating-bars {
+        display: block !important
+    }
+
+    .btnThemMoi {
+        float: left !important
+    }
+
+    .btnSearch {
+        float: right !important;
+    }
+
+        .btnSearch .input-group {
+            flex-wrap:nowrap!important;
+            width:100% !important
+        }
+
+    .btn > span {
+        display: none !important
+    }
+
+    .btn > .iconSearch {
+        display: none !important
+    }
+    .table .colHiden{display:none!important}
+    .table .btn > span {
+        display: block !important
+    }
+    #mdlNgonNgu_AddEdit .modal-content{width:auto!important}
+}
+
+@media only screen and (max-width:768px) {
+    .iconSearch {
+        display: none !important
+    }
+    .formNguoiDung{
+        width:100%!important; 
+        float:left!important
+    }
+    .imgTuNgonNgu {
+        left: -4px !important
+    }
+
+    #ddlDenNgonNgu {
+        margin-left: -1px !important
+    }
+}
+@media only screen and (max-width:426px) {
+    #mdlTuDien_AddEdit .form-group {
+        display: block !important;
+    }
+    .cke_top {display:none!important}
+}
+@media only screen and (max-width: 280px) {
+    .nav-item span {
+        display: none;
+    }
+
+    ul.nav {
+        left: 5px !important
+    }
+
+    #lstDetailWeb h5 {
+        float: none !important
+    }
+
+    .cources_price {
+        display: none !important
+    }
+
+    .rating-bars {
+        display: none !important
+    }
+}

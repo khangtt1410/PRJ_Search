@@ -46,11 +46,11 @@
     <table class="table table-hover table-bordered" id="tblNguoiDung">
         <thead>
             <tr>
-                <th scope="col" style="text-align:center">STT</th>
+                <th class="colHiden" scope="col" style="text-align:center">STT</th>
                 <th scope="col" >Tên đăng nhập</th>
-                <th scope="col">Họ tên</th>
-                <th scope="col" style="text-align:center">Số điện thoại</th>
-                <th scope="col">Địa chỉ</th>
+                <th class="colHiden" scope="col">Email</th>
+                <th class="colHiden" scope="col" style="text-align:center">Số điện thoại</th>
+                <th class="colHiden" scope="col">Địa chỉ</th>
                 <th scope="col" style="text-align:center">Chức năng</th>
             </tr>
         </thead>
@@ -60,11 +60,11 @@
             {
                 i++;
             <tr>
-                <td style="text-align:center">@i</td>
-                <th>@item.TenDangNhap<span class="tb_date">@item.Email</span></th>
-                <td>@item.HoTen</td>
-                <td style="text-align:center">@item.SoDienThoai</td>
-                <td>@item.DiaChi</td>
+                <td class="colHiden"  style="text-align:center">@i</td>
+                <th>@item.TenDangNhap<span class="tb_date">@item.HoTen</span></th>
+                <td class="colHiden">@item.Email</td>
+                <td class="colHiden" style="text-align:center">@item.SoDienThoai</td>
+                <td class="colHiden">@item.DiaChi</td>
                 <td style="text-align:center">
                     <a class="btn btn-action" style="padding:6px 6px" title="Sửa" onclick="ShowModalAddEdit(@item.ID)">
                         <span class="fa fa-edit"></span>

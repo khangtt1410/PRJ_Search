@@ -129,8 +129,8 @@ function ShowModalAddEdit(id) {
                 $.each(result.lstNgonNgu, function (i, item) {
                     htmlNgonNgu += '<option value="' + item.ID + '">' + item.TenNgonNgu + '</option>'
                 });
-                $('#dllTuNgonNgu').append(htmlNgonNgu);
-                $('#dllDenNgonNgu').append(htmlNgonNgu);
+                $('#dllTuNgonNgu').html(htmlNgonNgu);
+                $('#dllDenNgonNgu').html(htmlNgonNgu);
                 //Load chi tiết thông tin từ điển
                 $('#id').val(id);
                 $('#txtMaTuDien').val(result.data.MaTuDien);
@@ -160,6 +160,8 @@ function ShowModalAddEdit(id) {
 }
 //Hàm lưu từ điển
 function Save() {
+    //Gọi hàm thêm từ ngữ vào bảng tạm, tránh trường hợp nhập thông tin xong nhấn lưu luôn
+    ThemTuNgu_MangTam();
     //Kiểm tra ràng buộc của các trường thông tin từ điển
     var isSave = true;
     var maTuDien = $('#txtMaTuDien').val().trim();

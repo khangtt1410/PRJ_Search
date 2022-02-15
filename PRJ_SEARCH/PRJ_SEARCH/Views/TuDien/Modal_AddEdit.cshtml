@@ -15,7 +15,7 @@
             <div class="modal-body">
                 <input id="id" name="id" type="hidden" value="0" />
                 <h5 class="inforTuDien">Thông tin từ điển</h5>
-                <div class="col-md-12 no-padding" style="border:1px dashed #f55454; padding:20px; margin-bottom:20px">
+                <div class="col-md-12 no-padding inforTuDien" style="border:1px dashed #f55454; padding:20px; margin-bottom:20px">
                     <div class="col-md-12 form-group no-padding inforTuDien">
                         <div class="col-md-3">
                             <label>Mã từ điển</label><b class="price_ver"> *</b>
@@ -48,14 +48,6 @@
                             <span id="errNgonNguDich" class="price_ver"></span>
                         </div>
                     </div>
-                    <div class="col-md-12 no-padding form-group">
-                        <button class="btn btn-primary" type="button" id="btnLuuThayDoi" onclick="Save()">
-                           <i class="ti-save"> </i> Lưu từ điển
-                        </button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
-                           <i class="ti-close"> </i> Hủy bỏ
-                        </button>
-                    </div>
                 </div>
                 <h5 class="inforTuDien">Thêm từ ngữ vào từ điển</h5>
                 <i style="color:#f55454" class="inforTuDien"> <i class="ti-comment-alt"> </i> Lưu ý: Bạn có thể thực hiện thêm các từ ngữ vào trong từ điển bằng cách điền thông tin từ ngữ vào form bên dưới, hoặc sử dụng tính năng thêm từ ngữ tại màn hình danh sách từ điển</i>
@@ -84,7 +76,7 @@
                         </div>
                         <div class="col-md-12">
                             <label>Thành ngữ</label>
-                            <textarea type="text" rows="3" class="form-control"  name="ckeditor_thanhngu"id="txtThanhNgu"></textarea>
+                            <textarea type="text" rows="3" class="form-control" name="ckeditor_thanhngu" id="txtThanhNgu"></textarea>
                         </div>
                         <div class="col-md-12">
                             <label>Ví dụ</label>
@@ -101,8 +93,11 @@
                             </div>
                         </div>
                         <div class="col-md-12 no-padding" style="padding: 20px;">
-                            <button class="btn btn-secondary" id="btnLamMoi"><i class="ti-reload"></i> Làm mới</button>
-                            <button class="btn btn-primary" id="btnThemVaoTuDien" onclick="ThemTuNgu_MangTam()"><i class="ti-pencil-alt"></i> Thêm vào từ điển</button>
+                            <button class="btn btn-secondary" id="btnLamMoi"><i class="ti-reload"></i> <span> Làm mới</span></button>
+                            <button class="btn btn-primary" id="btnThemVaoTuDien" onclick="ThemTuNgu_MangTam()">
+                                <i class="ti-pencil-alt"></i>
+                                <span> Lưu tạm thời</span>
+                            </button>
                         </div>
                     </div>
                     <div class="col-md-12 no-padding" style="background: #706c6c; height: 500px; overflow: auto; padding: 20px;">
@@ -110,18 +105,27 @@
                             <thead>
                                 <tr>
                                     <th class="center" style="width:30%">Nội dung từ</th>
-                                    <th class="center">Ngữ nghĩa</th>
+                                    <th class="center colHiden">Ngữ nghĩa</th>
                                     <th class="center" style="width:18%">Tác vụ</th>
                                 </tr>
                             </thead>
                             <tbody id="bodyTuNgu">
                                 <tr>
                                     <td class="left">Nội dung từ</td>
-                                    <td class="left">Ngữ nghĩa</td>
+                                    <td class="left colHiden">Ngữ nghĩa</td>
                                     <td class="center">Tác vụ</td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+
+                    <div class="col-md-12 no-padding form-group" style="margin-top:20px">
+                        <button class="btn btn-primary" type="button" id="btnLuuThayDoi" onclick="Save()">
+                            <i class="ti-save"> </i> <span> Lưu vào CSDL</span>
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
+                            <i class="ti-close"> </i> <span> Hủy bỏ</span>
+                        </button>
                     </div>
                 </div>
             </div>

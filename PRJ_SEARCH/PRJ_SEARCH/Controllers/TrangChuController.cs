@@ -54,7 +54,7 @@ namespace PRJ_SEARCH.Controllers
             string cx = "b60a96b351223441f";
 
             string query = keyWord;
-            string url = "https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx=" + cx + "&q=" + keyWord;
+            string url = "https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx=" + cx + "&q=nghĩa của từ" + keyWord + " là gì";
             var request = WebRequest.Create(url);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             Stream dataStream = response.GetResponseStream();

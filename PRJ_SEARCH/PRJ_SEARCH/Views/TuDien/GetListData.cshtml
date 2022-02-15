@@ -46,11 +46,11 @@
     <table class="table table-hover table-bordered" id="tblTuDien">
         <thead>
             <tr>
-                <th scope="col" class="text-center">STT</th>
+                <th scope="col" class="text-center colHiden">STT</th>
                 <th scope="col" class="text-center">Mã từ điển</th>
                 <th scope="col" class="text-center">Tên từ điển</th>
-                <th scope="col" class="text-center">Ngôn ngữ nguồn</th>
-                <th scope="col" class="text-center">Ngôn ngữ đích</th>
+                <th scope="col" class="text-center colHiden">Ngôn ngữ nguồn</th>
+                <th scope="col" class="text-center colHiden">Ngôn ngữ đích</th>
                 <th scope="col" class="text-center">Chức năng</th>
             </tr>
         </thead>
@@ -60,11 +60,11 @@
             {
                 i++;
             <tr>
-                <td class="text-center">@i</td>
+                <td class="text-center colHiden">@i</td>
                 <th>@item.MaTuDien<span class="tb_date">@item.TacGia</span></th>
                 <td>@item.TenTuDien</td>
-                <td class="text-center">@item.NgonNguNguon</td>
-                <td class="text-center">@item.NgonNguDich</td>
+                <td class="text-center colHiden">@item.NgonNguNguon</td>
+                <td class="text-center colHiden">@item.NgonNguDich</td>
                 <td class="text-center">
                     <a class="btn btn-action" style="padding:6px 6px" title="Sửa" onclick="ShowModalAddEdit(@item.ID)">
                         <span class="fa fa-edit"></span>
